@@ -17,7 +17,7 @@ namespace DNA64.Library {
     }
 
     public static string json_encode(dynamic data) {
-      return JsonConvert.SerializeObject(data);
+      return JsonConvert.SerializeObject(data, Formatting.Indented);
     }
 
     public static bool isset(dynamic settings, string name) {
