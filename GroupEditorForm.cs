@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static DNA64.Library.Common;
 
-namespace NppBot {
+namespace NppLauncher {
   public partial class GroupEditorForm : Form {
     public string Data = "";
 

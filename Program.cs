@@ -4,8 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace NppBot
-{
+namespace NppLauncher {
     static class Program
     {
         /// <summary>

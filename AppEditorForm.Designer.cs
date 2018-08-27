@@ -1,4 +1,4 @@
-﻿namespace NppBot {
+﻿namespace NppLauncher {
   partial class AppEditorForm {
     /// <summary>
     /// Required designer variable.

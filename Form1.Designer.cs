@@ -1,4 +1,4 @@
-﻿namespace NppBot
+﻿namespace NppLauncher
 {
     partial class Form1
     {
@@ -66,6 +66,8 @@
       this.cloneToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.removeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.editToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+      this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
       this.menuStrip1.SuspendLayout();
       this.contextMenuStrip1.SuspendLayout();
       this.contextMenuStrip_App.SuspendLayout();
@@ -115,9 +117,11 @@
       // editToolStripMenuItem
       // 
       this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.optionsToolStripMenuItem,
+            this.toolStripMenuItem2,
             this.checkRemoveFoldersToolStripMenuItem,
-            this.runDelallpyToolStripMenuItem,
-            this.listFoldersToolStripMenuItem});
+            this.listFoldersToolStripMenuItem,
+            this.runDelallpyToolStripMenuItem});
       this.editToolStripMenuItem.Name = "editToolStripMenuItem";
       this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
       this.editToolStripMenuItem.Text = "Edit";
@@ -373,6 +377,18 @@
       this.editToolStripMenuItem1.Text = "Edit";
       this.editToolStripMenuItem1.Click += new System.EventHandler(this.editToolStripMenuItem1_Click);
       // 
+      // optionsToolStripMenuItem
+      // 
+      this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
+      this.optionsToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+      this.optionsToolStripMenuItem.Text = "Options";
+      this.optionsToolStripMenuItem.Click += new System.EventHandler(this.optionsToolStripMenuItem_Click);
+      // 
+      // toolStripMenuItem2
+      // 
+      this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+      this.toolStripMenuItem2.Size = new System.Drawing.Size(188, 6);
+      // 
       // Form1
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -443,6 +459,8 @@
     private System.Windows.Forms.ToolStripMenuItem removeToolStripMenuItem;
     private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem1;
     private System.Windows.Forms.ToolStripMenuItem groupToolStripMenuItem;
+    private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
+    private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
   }
 }
 

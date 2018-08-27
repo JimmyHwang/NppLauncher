@@ -11,7 +11,7 @@ using System.Collections.Generic;
 using static DNA64.Library.Common;
 using System.Collections;
 
-namespace NppBot {  
+namespace NppLauncher {  
   public partial class Form1 : Form {
 
     private const int SW_HIDE = 0;        // ShowWindow
@@ -672,6 +672,11 @@ namespace NppBot {
       var clickedMenuItem = sender as ToolStripItem;
       var menuText = clickedMenuItem.Text;
       LaunchGroup(menuText);      
+    }
+
+    private void optionsToolStripMenuItem_Click (object sender, EventArgs e) {
+      var form = new OptionsForm ();
+
     }
   }
 }

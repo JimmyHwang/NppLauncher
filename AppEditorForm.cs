@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace NppBot {
+namespace NppLauncher {
   public partial class AppEditorForm : Form {
     public string Name_;
     public string Target;
@@ -28,6 +28,7 @@ namespace NppBot {
       Target = textBox_Target.Text;
       Args = textBox_Args.Text;
     }
+
     private void button_OK_Click(object sender, EventArgs e) {
       UI2Config();
       this.DialogResult = DialogResult.OK;
