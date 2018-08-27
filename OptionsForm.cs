@@ -7,23 +7,30 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static DNA64.Library.Common;
 
 namespace NppLauncher {
   public partial class OptionsForm : Form {
+    public dynamic ConfigData;
+
     public OptionsForm () {
       InitializeComponent ();
     }
 
+    public dynamic InitConfigData(dynamic Data) {
+      ConfigData = Data;
+      if (!isset (ConfigData, "RefreshNpp")) {
+        ConfigData.RefreshNpp = false;
+      }
+      return ConfigData;
+    }
+
     void Config2UI () {
-      //textBox_Name.Text = Name_;
-      //textBox_Target.Text = Target;
-      //textBox_Args.Text = Args;
+      checkBox_RefreshNpp.Checked = ConfigData.RefreshNpp;
     }
 
     void UI2Config () {
-      //Name_ = textBox_Name.Text;
-      //Target = textBox_Target.Text;
-      //Args = textBox_Args.Text;
+      ConfigData.RefreshNpp = checkBox_RefreshNpp.Checked;
     }
 
     private void button_OK_Click (object sender, EventArgs e) {
