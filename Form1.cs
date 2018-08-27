@@ -288,6 +288,9 @@ namespace NppBot {
     private void Form1_Load (object sender, EventArgs e) {
       timer1.Enabled = true;
       checkBox_Startup.Checked = GetStartupRegistry ();
+      //
+      // Generate config file name
+      //
       ConfigFile = System.Reflection.Assembly.GetEntryAssembly().Location;
       ConfigFile = ConfigFile.Replace(".exe", ".cfg");
       //
@@ -353,9 +356,7 @@ namespace NppBot {
     }
 
     static void DeleteThreadEntry () {
-      //Console.WriteLine ("Python Start");
       RunProgram (DeleteFolder, "python", "delall.py");
-      //Console.WriteLine ("Python End");
     }
 
     private void checkRemoveFoldersToolStripMenuItem_Click (object sender, EventArgs e) {

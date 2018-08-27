@@ -46,6 +46,7 @@
       this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
       this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
       this.showWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.groupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.comboBox_Group = new System.Windows.Forms.ComboBox();
       this.listView_Apps = new System.Windows.Forms.ListView();
@@ -65,7 +66,6 @@
       this.cloneToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.removeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.editToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-      this.groupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.menuStrip1.SuspendLayout();
       this.contextMenuStrip1.SuspendLayout();
       this.contextMenuStrip_App.SuspendLayout();
@@ -196,14 +196,20 @@
       // showWindowToolStripMenuItem
       // 
       this.showWindowToolStripMenuItem.Name = "showWindowToolStripMenuItem";
-      this.showWindowToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+      this.showWindowToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
       this.showWindowToolStripMenuItem.Text = "Show Window";
       this.showWindowToolStripMenuItem.Click += new System.EventHandler(this.showWindowToolStripMenuItem_Click);
+      // 
+      // groupToolStripMenuItem
+      // 
+      this.groupToolStripMenuItem.Name = "groupToolStripMenuItem";
+      this.groupToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+      this.groupToolStripMenuItem.Text = "Launch Group";
       // 
       // exitToolStripMenuItem
       // 
       this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-      this.exitToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+      this.exitToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
       this.exitToolStripMenuItem.Text = "Exit";
       this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
       // 
@@ -342,36 +348,30 @@
       // runToolStripMenuItem
       // 
       this.runToolStripMenuItem.Name = "runToolStripMenuItem";
-      this.runToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+      this.runToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
       this.runToolStripMenuItem.Text = "Run";
       this.runToolStripMenuItem.Click += new System.EventHandler(this.runToolStripMenuItem_Click);
       // 
       // cloneToolStripMenuItem
       // 
       this.cloneToolStripMenuItem.Name = "cloneToolStripMenuItem";
-      this.cloneToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+      this.cloneToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
       this.cloneToolStripMenuItem.Text = "Clone";
       this.cloneToolStripMenuItem.Click += new System.EventHandler(this.cloneToolStripMenuItem_Click);
       // 
       // removeToolStripMenuItem
       // 
       this.removeToolStripMenuItem.Name = "removeToolStripMenuItem";
-      this.removeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+      this.removeToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
       this.removeToolStripMenuItem.Text = "Remove";
       this.removeToolStripMenuItem.Click += new System.EventHandler(this.removeToolStripMenuItem_Click);
       // 
       // editToolStripMenuItem1
       // 
       this.editToolStripMenuItem1.Name = "editToolStripMenuItem1";
-      this.editToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+      this.editToolStripMenuItem1.Size = new System.Drawing.Size(117, 22);
       this.editToolStripMenuItem1.Text = "Edit";
       this.editToolStripMenuItem1.Click += new System.EventHandler(this.editToolStripMenuItem1_Click);
-      // 
-      // groupToolStripMenuItem
-      // 
-      this.groupToolStripMenuItem.Name = "groupToolStripMenuItem";
-      this.groupToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-      this.groupToolStripMenuItem.Text = "Launch Group";
       // 
       // Form1
       // 
@@ -394,7 +394,7 @@
       this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
       this.MainMenuStrip = this.menuStrip1;
       this.Name = "Form1";
-      this.Text = "Form1";
+      this.Text = "Npp Launcher";
       this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
       this.Load += new System.EventHandler(this.Form1_Load);
       this.menuStrip1.ResumeLayout(false);

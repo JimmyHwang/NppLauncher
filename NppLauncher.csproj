@@ -7,8 +7,8 @@
     <ProjectGuid>{521585B5-BC5E-4B1A-BE33-7A2926DE44CC}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>NppBot</RootNamespace>
-    <AssemblyName>NppBot</AssemblyName>
+    <RootNamespace>NppLauncher</RootNamespace>
+    <AssemblyName>NppLauncher</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -89,6 +89,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
