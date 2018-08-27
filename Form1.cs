@@ -419,40 +419,27 @@ namespace NppLauncher {
     }
 
     void AppAdd () {
-      dynamic app = null;
+      dynamic app = new ExpandoObject();
       var group_name = comboBox_Group.Text;
       if (listView_Apps.SelectedItems.Count > 0) {
         var item = listView_Apps.SelectedItems[0];
         var app_name = item.Text;
         app = GetAppObject (group_name, app_name);
-        if (!isset (app, "Args")) {
-          app.Args = "";
-        }
       }
 
       var Form = new AppEditorForm ();
-      if (app == null) {
-        Form.Name_ = "";
-        Form.Target = "";
-        Form.Args = "";
-      } else {
-        Form.Name_ = app.Name;
-        Form.Target = app.Target;
-        Form.Args = app.Args;
-      }
+      Form.ConfigData = app;
       var result = Form.ShowDialog ();
       if (result == DialogResult.OK) {
-        string Name = Form.Name_;
-        string Target = Form.Target;
-        string Args = Form.Args;
-        var match_item = listView_Apps.FindItemWithText (Name);
+        app = Form.ConfigData;
+        var match_item = listView_Apps.FindItemWithText (app.Name);
         if (match_item == null) { // Add if not found
           //
           // Add to UI
           //
-          ListViewItem item = new ListViewItem (Name);
-          item.SubItems.Add (Form.Target);
-          item.SubItems.Add (Form.Args);
+          ListViewItem item = new ListViewItem (app.Name);
+          item.SubItems.Add (app.Target);
+          item.SubItems.Add (app.Args);
           listView_Apps.Items.Add (item);
           //
           // Add to Config
@@ -464,8 +451,8 @@ namespace NppLauncher {
           st = gdict.TryGetValue (gname, out value);
           List<dynamic> apps = (List<dynamic>)value;
           dynamic app_obj = new ExpandoObject ();
-          app_obj.Name = Name;
-          app_obj.Target = Target;
+          app_obj.Name = app.Name;
+          app_obj.Target = app.Target;
           apps.Add (app_obj);
         } else {
           MessageBox.Show ("Data already exists", "ERROR");
@@ -536,14 +523,47 @@ namespace NppLauncher {
       }
     }
 
-    void LaunchApplication (string app, string args) {
+    void LaunchApplication (dynamic app) {
+      //
+      // Set default data for leak fields of ConfigData
+      //
+      var form = new AppEditorForm ();
+      form.ConfigData = app;
+      form.InitConfigData ();
+      app = form.ConfigData;
+      //
+      // Launch Application
+      //
       ProcessStartInfo start = new ProcessStartInfo ();
-      start.Arguments = args;
-      start.FileName = app;
-      start.WindowStyle = ProcessWindowStyle.Hidden;
-      start.CreateNoWindow = true;
+      start.Arguments = app.Args;
+      start.FileName = app.Target;
+      switch (app.WindowMode) {
+        case 0:
+          start.WindowStyle = ProcessWindowStyle.Hidden;
+          start.CreateNoWindow = false;
+          break;
+        case 1:
+          start.WindowStyle = ProcessWindowStyle.Minimized;
+          start.CreateNoWindow = false;
+          break;
+        case 2:
+          start.WindowStyle = ProcessWindowStyle.Maximized;
+          start.CreateNoWindow = false;
+          break;
+        default:
+          start.WindowStyle = ProcessWindowStyle.Normal;
+          start.CreateNoWindow = true;
+          break;
+      }
+      
       Process proc = Process.Start (start);
-      proc.WaitForInputIdle ();  // Waiting App initialize done for TextFX.dll twice issue
+      if (app.WaitMode == 0) {
+        try {
+          proc.WaitForInputIdle ();  // Waiting App initialize done for TextFX.dll twice issue
+        } catch (Exception e) {
+          MessageBox.Show ("Exception for WaitForInputIdle()\n Try use <don't wait>");
+        }        
+      }      
     }
 
     void LaunchGroup (string group_name) {
@@ -552,7 +572,7 @@ namespace NppLauncher {
       if (gdict.TryGetValue (group_name, out value)) {
         List<dynamic> apps = (List<dynamic>)value;
         foreach (dynamic app in apps) {
-          LaunchApplication (app.Target, app.Args);
+          LaunchApplication (app);
         }
       }
     }
@@ -572,7 +592,7 @@ namespace NppLauncher {
         List<dynamic> apps = (List<dynamic>)value;
         foreach (dynamic app in apps) {
           if (app.Name == aname) {
-            LaunchApplication (app.Target, app.Args);
+            LaunchApplication (app);
           }
         }
       }
@@ -600,18 +620,11 @@ namespace NppLauncher {
       var item = listView_Apps.SelectedItems[0];
       var app_name = item.Text;
       var app = GetAppObject (group_name, app_name);
-      if (!isset (app, "Args")) {
-        app.Args = "";
-      }
       var Form = new AppEditorForm ();
-      Form.Name_ = app.Name;
-      Form.Target = app.Target;
-      Form.Args = app.Args;
+      Form.ConfigData = app;
       var result = Form.ShowDialog ();
       if (result == DialogResult.OK) {
-        app.Name = Form.Name_;
-        app.Target = Form.Target;
-        app.Args = Form.Args;
+        app = Form.ConfigData;
         //
         // Add to UI
         //

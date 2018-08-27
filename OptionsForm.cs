@@ -47,5 +47,10 @@ namespace NppLauncher {
     private void OptionsForm_Load (object sender, EventArgs e) {
       Config2UI ();
     }
+
+    private void button_AddFolder_Click (object sender, EventArgs e) {
+      var form = new FolderBrowserDialog ();
+
+    }
   }
 }

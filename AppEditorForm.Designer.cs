@@ -31,6 +31,8 @@
       this.button_Cancel = new System.Windows.Forms.Button();
       this.label3 = new System.Windows.Forms.Label();
       this.textBox_Args = new System.Windows.Forms.TextBox();
+      this.comboBox_WindowMode = new System.Windows.Forms.ComboBox();
+      this.comboBox_WaitMode = new System.Windows.Forms.ComboBox();
       this.SuspendLayout();
       // 
       // label1
@@ -101,11 +103,37 @@
       this.textBox_Args.Size = new System.Drawing.Size(687, 22);
       this.textBox_Args.TabIndex = 7;
       // 
+      // comboBox_WindowMode
+      // 
+      this.comboBox_WindowMode.FormattingEnabled = true;
+      this.comboBox_WindowMode.Items.AddRange(new object[] {
+            "Hidden",
+            "Minimized",
+            "Maximized",
+            "Normal"});
+      this.comboBox_WindowMode.Location = new System.Drawing.Point(579, 29);
+      this.comboBox_WindowMode.Name = "comboBox_WindowMode";
+      this.comboBox_WindowMode.Size = new System.Drawing.Size(121, 20);
+      this.comboBox_WindowMode.TabIndex = 10;
+      // 
+      // comboBox_WaitMode
+      // 
+      this.comboBox_WaitMode.FormattingEnabled = true;
+      this.comboBox_WaitMode.Items.AddRange(new object[] {
+            "Wait",
+            "Don\'t Wait"});
+      this.comboBox_WaitMode.Location = new System.Drawing.Point(452, 29);
+      this.comboBox_WaitMode.Name = "comboBox_WaitMode";
+      this.comboBox_WaitMode.Size = new System.Drawing.Size(121, 20);
+      this.comboBox_WaitMode.TabIndex = 11;
+      // 
       // AppEditorForm
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(712, 174);
+      this.Controls.Add(this.comboBox_WaitMode);
+      this.Controls.Add(this.comboBox_WindowMode);
       this.Controls.Add(this.textBox_Args);
       this.Controls.Add(this.label3);
       this.Controls.Add(this.button_Cancel);
@@ -132,5 +160,7 @@
     private System.Windows.Forms.Button button_Cancel;
     private System.Windows.Forms.Label label3;
     private System.Windows.Forms.TextBox textBox_Args;
+    private System.Windows.Forms.ComboBox comboBox_WindowMode;
+    private System.Windows.Forms.ComboBox comboBox_WaitMode;
   }
 }
