@@ -27,6 +27,9 @@ namespace NppLauncher {
       if (!isset (ConfigData, "Args")) {
         ConfigData.Args = "";
       }
+      if (!isset (ConfigData, "Folder")) {
+        ConfigData.Folder = "";
+      }
       if (!isset (ConfigData, "WindowMode")) {
         ConfigData.WindowMode = 0;
       } 
@@ -42,6 +45,7 @@ namespace NppLauncher {
       textBox_Name.Text = ConfigData.Name;
       textBox_Target.Text = ConfigData.Target;
       textBox_Args.Text = ConfigData.Args;
+      textBox_Folder.Text = ConfigData.Folder;
     }
 
     void UI2Config() {
@@ -50,6 +54,7 @@ namespace NppLauncher {
       ConfigData.Name = textBox_Name.Text;
       ConfigData.Target = textBox_Target.Text;
       ConfigData.Args = textBox_Args.Text;
+      ConfigData.Folder = textBox_Folder.Text;
     }
 
     private void button_OK_Click(object sender, EventArgs e) {
@@ -65,6 +70,17 @@ namespace NppLauncher {
 
     private void AppEditorForm_Load(object sender, EventArgs e) {
       Config2UI();
+    }
+
+    private void button_Folder_Click (object sender, EventArgs e) {
+      using (var dialog = new FolderBrowserDialog ()) {
+        dialog.SelectedPath = ConfigData.Folder;
+        DialogResult result = dialog.ShowDialog ();
+        if (result == DialogResult.OK) {
+          ConfigData.Folder = dialog.SelectedPath;
+          textBox_Folder.Text = ConfigData.Folder;
+        }
+      }
     }
   }
 }

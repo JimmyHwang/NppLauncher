@@ -535,6 +535,9 @@ namespace NppLauncher {
       ProcessStartInfo start = new ProcessStartInfo ();
       start.Arguments = app.Args;
       start.FileName = app.Target;
+      if (app.Folder != "") {
+        start.WorkingDirectory = app.Folder;
+      }      
       switch (app.WindowMode) {
         case 0:
           start.WindowStyle = ProcessWindowStyle.Hidden;
