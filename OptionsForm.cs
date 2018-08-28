@@ -22,11 +22,31 @@ namespace NppLauncher {
       if (!isset (ConfigData, "RefreshNpp")) {
         ConfigData.RefreshNpp = false;
       }
+      if (!isset (ConfigData, "TrashFolders")) {
+        ConfigData.TrashFolders = new List<System.Object> { };
+      }
+
       return ConfigData;
+    }
+
+    void UpdateListViewTrashFolders () {
+      List<dynamic> folders = (List<dynamic>)ConfigData.TrashFolders;
+      listView_TrashFolders.Items.Clear ();
+      int Index = 0;
+      foreach (dynamic fitem in folders) {
+        ListViewItem lvitem = new ListViewItem ();
+        lvitem.Text = fitem.Folder;
+        lvitem.SubItems.Add (fitem.Interval.ToString ());
+        lvitem.SubItems.Add (fitem.Loading.ToString ());
+        lvitem.Tag = Index;
+        listView_TrashFolders.Items.Add (lvitem);
+        Index++;
+      }
     }
 
     void Config2UI () {
       checkBox_RefreshNpp.Checked = ConfigData.RefreshNpp;
+      UpdateListViewTrashFolders ();
     }
 
     void UI2Config () {
@@ -49,8 +69,47 @@ namespace NppLauncher {
     }
 
     private void button_AddFolder_Click (object sender, EventArgs e) {
-      var form = new FolderBrowserDialog ();
+      dynamic TrashFolder;
+      var form = new AutoTrashForm ();
+      form.InitConfigData ();
+      var result = form.ShowDialog ();
+      if (result == DialogResult.OK) {
+        TrashFolder = form.ConfigData;
+        ConfigData.TrashFolders.Add (TrashFolder);
+        UpdateListViewTrashFolders ();
+      }
+    }
 
+    dynamic GetFolderObject (int Index) {
+      dynamic fobj = null;
+      List<dynamic> folders = (List<dynamic>)ConfigData.TrashFolders;
+      int Count = 0;
+      foreach (dynamic folder in folders) {
+        if (Count == Index) {
+          fobj = folder;
+        }
+        Count++;
+      }
+      return fobj;
+    }
+
+    private void button_Edit_Click (object sender, EventArgs e) {
+      int Index = -1;
+      if (listView_TrashFolders.SelectedItems.Count > 0) {
+        Index = (int)listView_TrashFolders.SelectedItems[0].Tag;
+      }
+
+      if (Index != -1) {
+        dynamic fobj = GetFolderObject (Index);
+        var form = new AutoTrashForm ();
+        form.ConfigData = fobj;
+        form.InitConfigData ();
+        var result = form.ShowDialog ();
+        if (result == DialogResult.OK) {
+          fobj = form.ConfigData;
+          UpdateListViewTrashFolders ();          
+        }
+      }
     }
   }
 }

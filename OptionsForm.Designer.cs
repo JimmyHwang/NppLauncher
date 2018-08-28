@@ -30,11 +30,13 @@
       this.tabPage2 = new System.Windows.Forms.TabPage();
       this.checkBox_RefreshNpp = new System.Windows.Forms.CheckBox();
       this.tabPage3 = new System.Windows.Forms.TabPage();
-      this.listView_FolderPath = new System.Windows.Forms.ListView();
-      this.button_AddFolder = new System.Windows.Forms.Button();
       this.button_RemoveFolder = new System.Windows.Forms.Button();
+      this.button_AddFolder = new System.Windows.Forms.Button();
+      this.listView_TrashFolders = new System.Windows.Forms.ListView();
       this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
       this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+      this.button_Edit = new System.Windows.Forms.Button();
+      this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
       this.tabControl1.SuspendLayout();
       this.tabPage2.SuspendLayout();
       this.tabPage3.SuspendLayout();
@@ -104,28 +106,25 @@
       // 
       // tabPage3
       // 
+      this.tabPage3.Controls.Add(this.button_Edit);
       this.tabPage3.Controls.Add(this.button_RemoveFolder);
       this.tabPage3.Controls.Add(this.button_AddFolder);
-      this.tabPage3.Controls.Add(this.listView_FolderPath);
+      this.tabPage3.Controls.Add(this.listView_TrashFolders);
       this.tabPage3.Location = new System.Drawing.Point(4, 22);
       this.tabPage3.Name = "tabPage3";
       this.tabPage3.Size = new System.Drawing.Size(549, 258);
       this.tabPage3.TabIndex = 2;
-      this.tabPage3.Text = "Folder Cleaner";
+      this.tabPage3.Text = "Auto Trash";
       this.tabPage3.UseVisualStyleBackColor = true;
       // 
-      // listView_FolderPath
+      // button_RemoveFolder
       // 
-      this.listView_FolderPath.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2});
-      this.listView_FolderPath.FullRowSelect = true;
-      this.listView_FolderPath.Location = new System.Drawing.Point(7, 3);
-      this.listView_FolderPath.Name = "listView_FolderPath";
-      this.listView_FolderPath.Size = new System.Drawing.Size(458, 252);
-      this.listView_FolderPath.TabIndex = 9;
-      this.listView_FolderPath.UseCompatibleStateImageBehavior = false;
-      this.listView_FolderPath.View = System.Windows.Forms.View.Details;
+      this.button_RemoveFolder.Location = new System.Drawing.Point(471, 32);
+      this.button_RemoveFolder.Name = "button_RemoveFolder";
+      this.button_RemoveFolder.Size = new System.Drawing.Size(75, 23);
+      this.button_RemoveFolder.TabIndex = 11;
+      this.button_RemoveFolder.Text = "Remove";
+      this.button_RemoveFolder.UseVisualStyleBackColor = true;
       // 
       // button_AddFolder
       // 
@@ -137,14 +136,19 @@
       this.button_AddFolder.UseVisualStyleBackColor = true;
       this.button_AddFolder.Click += new System.EventHandler(this.button_AddFolder_Click);
       // 
-      // button_RemoveFolder
+      // listView_TrashFolders
       // 
-      this.button_RemoveFolder.Location = new System.Drawing.Point(471, 32);
-      this.button_RemoveFolder.Name = "button_RemoveFolder";
-      this.button_RemoveFolder.Size = new System.Drawing.Size(75, 23);
-      this.button_RemoveFolder.TabIndex = 11;
-      this.button_RemoveFolder.Text = "Remove";
-      this.button_RemoveFolder.UseVisualStyleBackColor = true;
+      this.listView_TrashFolders.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3});
+      this.listView_TrashFolders.FullRowSelect = true;
+      this.listView_TrashFolders.Location = new System.Drawing.Point(7, 3);
+      this.listView_TrashFolders.Name = "listView_TrashFolders";
+      this.listView_TrashFolders.Size = new System.Drawing.Size(458, 252);
+      this.listView_TrashFolders.TabIndex = 9;
+      this.listView_TrashFolders.UseCompatibleStateImageBehavior = false;
+      this.listView_TrashFolders.View = System.Windows.Forms.View.Details;
       // 
       // columnHeader1
       // 
@@ -155,6 +159,20 @@
       // 
       this.columnHeader2.Text = "Interval";
       this.columnHeader2.Width = 74;
+      // 
+      // button_Edit
+      // 
+      this.button_Edit.Location = new System.Drawing.Point(471, 61);
+      this.button_Edit.Name = "button_Edit";
+      this.button_Edit.Size = new System.Drawing.Size(75, 23);
+      this.button_Edit.TabIndex = 12;
+      this.button_Edit.Text = "Edit";
+      this.button_Edit.UseVisualStyleBackColor = true;
+      this.button_Edit.Click += new System.EventHandler(this.button_Edit_Click);
+      // 
+      // columnHeader3
+      // 
+      this.columnHeader3.Text = "Loading";
       // 
       // OptionsForm
       // 
@@ -186,8 +204,10 @@
     private System.Windows.Forms.TabPage tabPage3;
     private System.Windows.Forms.Button button_RemoveFolder;
     private System.Windows.Forms.Button button_AddFolder;
-    private System.Windows.Forms.ListView listView_FolderPath;
+    private System.Windows.Forms.ListView listView_TrashFolders;
     private System.Windows.Forms.ColumnHeader columnHeader1;
     private System.Windows.Forms.ColumnHeader columnHeader2;
+    private System.Windows.Forms.Button button_Edit;
+    private System.Windows.Forms.ColumnHeader columnHeader3;
   }
 }

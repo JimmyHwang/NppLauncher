@@ -57,6 +57,12 @@
     <Compile Include="AppEditorForm.Designer.cs">
       <DependentUpon>AppEditorForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="AutoTrashForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AutoTrashForm.Designer.cs">
+      <DependentUpon>AutoTrashForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -80,6 +86,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AppEditorForm.resx">
       <DependentUpon>AppEditorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AutoTrashForm.resx">
+      <DependentUpon>AutoTrashForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
