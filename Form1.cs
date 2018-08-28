@@ -425,6 +425,7 @@ namespace NppLauncher {
         var item = listView_Apps.SelectedItems[0];
         var app_name = item.Text;
         app = GetAppObject (group_name, app_name);
+        app = DeepCopy (app);
       }
 
       var Form = new AppEditorForm ();
@@ -450,10 +451,7 @@ namespace NppLauncher {
           var gdict = (IDictionary<string, object>)ConfigData.Group;
           st = gdict.TryGetValue (gname, out value);
           List<dynamic> apps = (List<dynamic>)value;
-          dynamic app_obj = new ExpandoObject ();
-          app_obj.Name = app.Name;
-          app_obj.Target = app.Target;
-          apps.Add (app_obj);
+          apps.Add (app);
         } else {
           MessageBox.Show ("Data already exists", "ERROR");
         }

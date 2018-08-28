@@ -11,7 +11,6 @@ using Newtonsoft.Json.Converters;
 
 namespace DNA64.Library {
   public static class Common {
-
     public static dynamic json_decode(string data) {
       return JsonConvert.DeserializeObject<ExpandoObject>(data, new ExpandoObjectConverter());
     }
@@ -25,6 +24,18 @@ namespace DNA64.Library {
         return ((IDictionary<string, object>)settings).ContainsKey(name);
       }
       return settings.GetType().GetProperty(name) != null;
+    }
+
+    public static ExpandoObject DeepCopy (ExpandoObject original) {
+      var clone = new ExpandoObject ();
+
+      var _original = (IDictionary<string, object>)original;
+      var _clone = (IDictionary<string, object>)clone;
+
+      foreach (var kvp in _original)
+        _clone.Add (kvp.Key, kvp.Value is ExpandoObject ? DeepCopy ((ExpandoObject)kvp.Value) : kvp.Value);
+
+      return clone;
     }
   }
 }
