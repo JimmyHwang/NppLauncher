@@ -30,12 +30,12 @@
       this.tabPage2 = new System.Windows.Forms.TabPage();
       this.checkBox_RefreshNpp = new System.Windows.Forms.CheckBox();
       this.tabPage3 = new System.Windows.Forms.TabPage();
+      this.button_Edit = new System.Windows.Forms.Button();
       this.button_RemoveFolder = new System.Windows.Forms.Button();
       this.button_AddFolder = new System.Windows.Forms.Button();
       this.listView_TrashFolders = new System.Windows.Forms.ListView();
       this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
       this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-      this.button_Edit = new System.Windows.Forms.Button();
       this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
       this.tabControl1.SuspendLayout();
       this.tabPage2.SuspendLayout();
@@ -117,6 +117,16 @@
       this.tabPage3.Text = "Auto Trash";
       this.tabPage3.UseVisualStyleBackColor = true;
       // 
+      // button_Edit
+      // 
+      this.button_Edit.Location = new System.Drawing.Point(471, 61);
+      this.button_Edit.Name = "button_Edit";
+      this.button_Edit.Size = new System.Drawing.Size(75, 23);
+      this.button_Edit.TabIndex = 12;
+      this.button_Edit.Text = "Edit";
+      this.button_Edit.UseVisualStyleBackColor = true;
+      this.button_Edit.Click += new System.EventHandler(this.button_Edit_Click);
+      // 
       // button_RemoveFolder
       // 
       this.button_RemoveFolder.Location = new System.Drawing.Point(471, 32);
@@ -125,6 +135,7 @@
       this.button_RemoveFolder.TabIndex = 11;
       this.button_RemoveFolder.Text = "Remove";
       this.button_RemoveFolder.UseVisualStyleBackColor = true;
+      this.button_RemoveFolder.Click += new System.EventHandler(this.button_RemoveFolder_Click);
       // 
       // button_AddFolder
       // 
@@ -159,16 +170,6 @@
       // 
       this.columnHeader2.Text = "Interval";
       this.columnHeader2.Width = 74;
-      // 
-      // button_Edit
-      // 
-      this.button_Edit.Location = new System.Drawing.Point(471, 61);
-      this.button_Edit.Name = "button_Edit";
-      this.button_Edit.Size = new System.Drawing.Size(75, 23);
-      this.button_Edit.TabIndex = 12;
-      this.button_Edit.Text = "Edit";
-      this.button_Edit.UseVisualStyleBackColor = true;
-      this.button_Edit.Click += new System.EventHandler(this.button_Edit_Click);
       // 
       // columnHeader3
       // 

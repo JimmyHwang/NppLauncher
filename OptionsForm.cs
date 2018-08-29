@@ -111,5 +111,24 @@ namespace NppLauncher {
         }
       }
     }
+
+    private void button_RemoveFolder_Click (object sender, EventArgs e) {
+      int Index = -1;
+      if (listView_TrashFolders.SelectedItems.Count > 0) {
+        Index = (int)listView_TrashFolders.SelectedItems[0].Tag;
+      }
+      if (Index != -1 ) {
+        //
+        // Delete Item of UI
+        //
+        Index = (int)listView_TrashFolders.SelectedItems[0].Tag;
+        listView_TrashFolders.Items.RemoveAt (Index);
+        //
+        // Delete Item of ConfigData
+        //
+        List<dynamic> folders = (List<dynamic>)ConfigData.TrashFolders;
+        folders.RemoveAt (Index);
+      }
+    }
   }
 }
