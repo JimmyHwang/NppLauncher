@@ -40,7 +40,6 @@ namespace NppLauncher {
     int Ticks = 0;
     uint NppPID = 0;
     Thread DeleteThread;
-    static string DeleteFolder = "E:\\RemoveFolders";
     string ConfigFile;
     dynamic ConfigData;
 
@@ -49,27 +48,45 @@ namespace NppLauncher {
       InitializeComponent ();
     }
 
-    void DeleteTimerEvent () {
-      List<string> FolderList;
-      string folder = "E:\\RemoveFolders";
+    //--------------------------------------------------------------------------
+    // Delete Thread
+    //--------------------------------------------------------------------------
+    static dynamic ThreadConfigData;
 
-      if (DeleteThread != null) {
-        if (!DeleteThread.IsAlive) {
-          DeleteThread = null;
-        }
-      }
-
-      if (Directory.Exists (folder)) {
-        FolderList = GetDirectories (folder, "*.*");
-        if (FolderList.Count > 0) {
-          if (DeleteThread == null) {
-            DeleteThread = new Thread (DeleteThreadEntry);
-            DeleteThread.Start ();
+    static void DeleteThreadEntry () {
+      string script;
+      List<dynamic> folders = (List<dynamic>)ThreadConfigData.TrashFolders;
+      foreach (dynamic fobj in folders) {
+        if (Directory.Exists (fobj.Folder)) {
+          Console.WriteLine (fobj.Folder);
+          script = Path.Combine(fobj.Folder, "delall.py");
+          Console.WriteLine (script);
+          if (File.Exists(script)) {
+            RunProgram (fobj.Folder, "python", "delall.py");
+          } else {
+            DeleteAll (fobj.Folder);
           }
         }
       }
     }
 
+    void DeleteTimerEvent () {
+      if (DeleteThread != null) {
+        if (!DeleteThread.IsAlive) {
+          DeleteThread = null;
+        }
+      }
+          
+      if (DeleteThread == null) {
+        ThreadConfigData = DeepCopy (ConfigData);
+        DeleteThread = new Thread (DeleteThreadEntry);
+        DeleteThread.Start ();
+      }
+    }
+    
+    //--------------------------------------------------------------------------
+    // Timer
+    //--------------------------------------------------------------------------
     private void timer1_Tick (object sender, EventArgs e) {
       bool exist;
       dynamic obj;
@@ -342,10 +359,6 @@ namespace NppLauncher {
       process.WaitForExit ();
 
       return result;
-    }
-
-    static void DeleteThreadEntry () {
-      RunProgram (DeleteFolder, "python", "delall.py");
     }
 
     private void checkRemoveFoldersToolStripMenuItem_Click (object sender, EventArgs e) {
@@ -684,7 +697,6 @@ namespace NppLauncher {
       if (result == DialogResult.OK) {
         ConfigData = form.ConfigData;
       }
-    }
-
+    }  
   } // Form1
 }

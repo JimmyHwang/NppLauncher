@@ -36,9 +36,11 @@
       this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
       this.exitToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
       this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
       this.checkRemoveFoldersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-      this.runDelallpyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.listFoldersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.runDelallpyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.timer1 = new System.Windows.Forms.Timer(this.components);
       this.button_Minimum = new System.Windows.Forms.Button();
@@ -66,8 +68,6 @@
       this.cloneToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.removeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.editToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-      this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-      this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
       this.menuStrip1.SuspendLayout();
       this.contextMenuStrip1.SuspendLayout();
       this.contextMenuStrip_App.SuspendLayout();
@@ -126,6 +126,18 @@
       this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
       this.editToolStripMenuItem.Text = "Edit";
       // 
+      // optionsToolStripMenuItem
+      // 
+      this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
+      this.optionsToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+      this.optionsToolStripMenuItem.Text = "Options";
+      this.optionsToolStripMenuItem.Click += new System.EventHandler(this.optionsToolStripMenuItem_Click);
+      // 
+      // toolStripMenuItem2
+      // 
+      this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+      this.toolStripMenuItem2.Size = new System.Drawing.Size(188, 6);
+      // 
       // checkRemoveFoldersToolStripMenuItem
       // 
       this.checkRemoveFoldersToolStripMenuItem.Name = "checkRemoveFoldersToolStripMenuItem";
@@ -133,19 +145,19 @@
       this.checkRemoveFoldersToolStripMenuItem.Text = "Check RemoveFolders";
       this.checkRemoveFoldersToolStripMenuItem.Click += new System.EventHandler(this.checkRemoveFoldersToolStripMenuItem_Click);
       // 
-      // runDelallpyToolStripMenuItem
-      // 
-      this.runDelallpyToolStripMenuItem.Name = "runDelallpyToolStripMenuItem";
-      this.runDelallpyToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
-      this.runDelallpyToolStripMenuItem.Text = "Run delall.py";
-      this.runDelallpyToolStripMenuItem.Click += new System.EventHandler(this.runDelallpyToolStripMenuItem_Click);
-      // 
       // listFoldersToolStripMenuItem
       // 
       this.listFoldersToolStripMenuItem.Name = "listFoldersToolStripMenuItem";
       this.listFoldersToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
       this.listFoldersToolStripMenuItem.Text = "List Folders";
       this.listFoldersToolStripMenuItem.Click += new System.EventHandler(this.listFoldersToolStripMenuItem_Click);
+      // 
+      // runDelallpyToolStripMenuItem
+      // 
+      this.runDelallpyToolStripMenuItem.Name = "runDelallpyToolStripMenuItem";
+      this.runDelallpyToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+      this.runDelallpyToolStripMenuItem.Text = "Run delall.py";
+      this.runDelallpyToolStripMenuItem.Click += new System.EventHandler(this.runDelallpyToolStripMenuItem_Click);
       // 
       // helpToolStripMenuItem
       // 
@@ -376,18 +388,6 @@
       this.editToolStripMenuItem1.Size = new System.Drawing.Size(117, 22);
       this.editToolStripMenuItem1.Text = "Edit";
       this.editToolStripMenuItem1.Click += new System.EventHandler(this.editToolStripMenuItem1_Click);
-      // 
-      // optionsToolStripMenuItem
-      // 
-      this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
-      this.optionsToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
-      this.optionsToolStripMenuItem.Text = "Options";
-      this.optionsToolStripMenuItem.Click += new System.EventHandler(this.optionsToolStripMenuItem_Click);
-      // 
-      // toolStripMenuItem2
-      // 
-      this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-      this.toolStripMenuItem2.Size = new System.Drawing.Size(188, 6);
       // 
       // Form1
       // 

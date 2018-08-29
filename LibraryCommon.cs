@@ -16,7 +16,7 @@ namespace DNA64.Library {
     }
 
     public static string json_encode(dynamic data) {
-      return JsonConvert.SerializeObject(data, Formatting.Indented);
+      return JsonConvert.SerializeObject (data, Formatting.Indented);
     }
 
     public static bool isset(dynamic settings, string name) {
@@ -37,5 +37,23 @@ namespace DNA64.Library {
 
       return clone;
     }
+
+    public static void DeleteAll(string folder) {
+      System.IO.DirectoryInfo di = new DirectoryInfo (folder);
+
+      foreach (FileInfo file in di.GetFiles ()) {
+        file.Delete ();
+      }
+      foreach (DirectoryInfo dir in di.GetDirectories ()) {
+        dir.Delete (true);
+      }
+    }
+
+    public static void Empty (this System.IO.DirectoryInfo directory) {
+      foreach (System.IO.FileInfo file in directory.GetFiles ()) file.Delete ();
+      foreach (System.IO.DirectoryInfo subDirectory in directory.GetDirectories ()) subDirectory.Delete (true);
+    }
+    //System.IO.DirectoryInfo directory = new System.IO.DirectoryInfo (@"C:\...");
+    //directory.Empty();
   }
 }
