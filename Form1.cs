@@ -57,14 +57,14 @@ namespace NppLauncher {
       string script;
       List<dynamic> folders = (List<dynamic>)ThreadConfigData.TrashFolders;
       foreach (dynamic fobj in folders) {
-        if (Directory.Exists (fobj.Folder)) {
-          Console.WriteLine (fobj.Folder);
-          script = Path.Combine(fobj.Folder, "delall.py");
-          Console.WriteLine (script);
-          if (File.Exists(script)) {
-            RunProgram (fobj.Folder, "python", "delall.py");
-          } else {
-            DeleteAll (fobj.Folder);
+        if (fobj.Interval > 0) {
+          if (Directory.Exists (fobj.Folder)) {
+            script = Path.Combine (fobj.Folder, "delall.py");
+            if (File.Exists (script)) {
+              RunProgram (fobj.Folder, "python", "delall.py");
+            } else {
+              DeleteAll (fobj.Folder);
+            }
           }
         }
       }
