@@ -57,7 +57,7 @@ namespace NppLauncher {
       string script;
       List<dynamic> folders = (List<dynamic>)ThreadConfigData.TrashFolders;
       foreach (dynamic fobj in folders) {
-        if (fobj.Interval > 0) {
+        if (Convert.ToInt32(fobj.Interval, 10) > 0) {
           if (Directory.Exists (fobj.Folder)) {
             script = Path.Combine (fobj.Folder, "delall.py");
             if (File.Exists (script)) {
@@ -547,37 +547,41 @@ namespace NppLauncher {
       //
       ProcessStartInfo start = new ProcessStartInfo ();
       start.Arguments = app.Args;
-      start.FileName = app.Target;
-      if (app.Folder != "") {
-        start.WorkingDirectory = app.Folder;
-      }      
-      switch (app.WindowMode) {
-        case 0:
-          start.WindowStyle = ProcessWindowStyle.Hidden;
-          start.CreateNoWindow = false;
-          break;
-        case 1:
-          start.WindowStyle = ProcessWindowStyle.Minimized;
-          start.CreateNoWindow = false;
-          break;
-        case 2:
-          start.WindowStyle = ProcessWindowStyle.Maximized;
-          start.CreateNoWindow = false;
-          break;
-        default:
-          start.WindowStyle = ProcessWindowStyle.Normal;
-          start.CreateNoWindow = true;
-          break;
+      if (File.Exists(app.Target)) {
+        start.FileName = app.Target;
+        if (app.Folder != "") {
+          start.WorkingDirectory = app.Folder;
+        }
+        switch (app.WindowMode) {
+          case 0:
+            start.WindowStyle = ProcessWindowStyle.Hidden;
+            start.CreateNoWindow = false;
+            break;
+          case 1:
+            start.WindowStyle = ProcessWindowStyle.Minimized;
+            start.CreateNoWindow = false;
+            break;
+          case 2:
+            start.WindowStyle = ProcessWindowStyle.Maximized;
+            start.CreateNoWindow = false;
+            break;
+          default:
+            start.WindowStyle = ProcessWindowStyle.Normal;
+            start.CreateNoWindow = true;
+            break;
+        }
+
+        Process proc = Process.Start (start);
+        if (app.WaitMode == 0) {
+          try {
+            proc.WaitForInputIdle ();  // Waiting App initialize done for TextFX.dll twice issue
+          } catch (Exception e) {
+            MessageBox.Show ("Exception for WaitForInputIdle()\n Try use <don't wait>");
+          }
+        }
+      } else {        
+        MessageBox.Show ("Error: Target not exists", "ERROR");
       }
-      
-      Process proc = Process.Start (start);
-      if (app.WaitMode == 0) {
-        try {
-          proc.WaitForInputIdle ();  // Waiting App initialize done for TextFX.dll twice issue
-        } catch (Exception e) {
-          MessageBox.Show ("Exception for WaitForInputIdle()\n Try use <don't wait>");
-        }        
-      }      
     }
 
     void LaunchGroup (string group_name) {
