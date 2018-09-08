@@ -580,7 +580,7 @@ namespace NppLauncher {
           }
         }
       } else {        
-        MessageBox.Show ("Error: Target not exists", "ERROR");
+        MessageBox.Show ("Error: Target not exists ["+app.Target+"]", "ERROR");
       }
     }
 
