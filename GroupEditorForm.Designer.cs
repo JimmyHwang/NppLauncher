@@ -27,6 +27,7 @@
       this.textBox_Name = new System.Windows.Forms.TextBox();
       this.button_OK = new System.Windows.Forms.Button();
       this.button_Cancel = new System.Windows.Forms.Button();
+      this.checkBox_Clone = new System.Windows.Forms.CheckBox();
       this.SuspendLayout();
       // 
       // label1
@@ -65,11 +66,22 @@
       this.button_Cancel.UseVisualStyleBackColor = true;
       this.button_Cancel.Click += new System.EventHandler(this.button_Cancel_Click);
       // 
+      // checkBox_Clone
+      // 
+      this.checkBox_Clone.AutoSize = true;
+      this.checkBox_Clone.Location = new System.Drawing.Point(15, 56);
+      this.checkBox_Clone.Name = "checkBox_Clone";
+      this.checkBox_Clone.Size = new System.Drawing.Size(52, 16);
+      this.checkBox_Clone.TabIndex = 4;
+      this.checkBox_Clone.Text = "Clone";
+      this.checkBox_Clone.UseVisualStyleBackColor = true;
+      // 
       // GroupEditorForm
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(269, 153);
+      this.Controls.Add(this.checkBox_Clone);
       this.Controls.Add(this.button_Cancel);
       this.Controls.Add(this.button_OK);
       this.Controls.Add(this.textBox_Name);
@@ -88,5 +100,6 @@
     private System.Windows.Forms.TextBox textBox_Name;
     private System.Windows.Forms.Button button_OK;
     private System.Windows.Forms.Button button_Cancel;
+    private System.Windows.Forms.CheckBox checkBox_Clone;
   }
 }

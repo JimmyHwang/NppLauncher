@@ -521,14 +521,23 @@ namespace NppLauncher {
           //
           var gdict = (IDictionary<string, object>)ConfigData.Group;
           if (gdict.TryGetValue (gname, out value)) {
-            gdict.Remove (gname);
-            gdict[new_gname] = value;
+            if (form.CloneFlag == false) {
+              gdict.Remove(gname);
+              gdict[new_gname] = value;
+            } else {
+              gdict[new_gname] = CloneObject(value);
+            }            
           }
           //
           // Update UI
           //
           var index = comboBox_Group.Items.IndexOf (gname);
-          comboBox_Group.Items[index] = new_gname;
+          if (form.CloneFlag == false) {
+            comboBox_Group.Items[index] = new_gname;
+          } else {
+            comboBox_Group.Items.Add(new_gname);
+          }
+
         }
         RefreshGroupToolStripMenu ();
       }

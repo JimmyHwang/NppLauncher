@@ -12,6 +12,7 @@ using static DNA64.Library.Common;
 namespace NppLauncher {
   public partial class GroupEditorForm : Form {
     public string Data = "";
+    public bool CloneFlag = false;
 
     public GroupEditorForm() {
       InitializeComponent();
@@ -32,7 +33,14 @@ namespace NppLauncher {
     }
 
     void UI2Config() {
+      string OldData = Data;
       Data = textBox_Name.Text;
+      if (checkBox_Clone.Checked) {
+        if (Data == OldData) {
+          Data = OldData + " (Clone)";
+        }
+      }      
+      CloneFlag = checkBox_Clone.Checked;
     }
 
     private void button_OK_Click(object sender, EventArgs e) {

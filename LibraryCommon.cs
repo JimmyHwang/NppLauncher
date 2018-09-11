@@ -38,6 +38,14 @@ namespace DNA64.Library {
       return clone;
     }
 
+    public static object CloneObject(object obj) {
+      dynamic temp = new ExpandoObject();
+      temp.Object = obj;
+      string json_data = json_encode(temp);
+      temp = json_decode(json_data);
+      return temp.Object;
+    }
+
     public static void DeleteAll(string folder) {
       System.IO.DirectoryInfo di = new DirectoryInfo (folder);
 
