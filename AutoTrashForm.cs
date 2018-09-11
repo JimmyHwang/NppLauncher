@@ -23,10 +23,10 @@ namespace NppLauncher {
         ConfigData.Folder = "";
       }
       if (!isset (ConfigData, "Interval")) {
-        ConfigData.Interval = 0;
+        ConfigData.Interval = "0";
       }
       if (!isset (ConfigData, "Loading")) {
-        ConfigData.Loading = 0;
+        ConfigData.Loading = "0";
       }
     }
 
