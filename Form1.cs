@@ -42,10 +42,15 @@ namespace NppLauncher {
     Thread DeleteThread;
     string ConfigFile;
     dynamic ConfigData;
-
+    static string PythonExecutionFile = "python.exe";
+    
     public Form1 () {
       AppName = System.Reflection.Assembly.GetExecutingAssembly ().GetName ().Name;
-      InitializeComponent ();
+      var python = LocatePythonExecuteFile();
+      if (python != null) {
+        PythonExecutionFile = python;
+      }
+      InitializeComponent();
     }
 
     //--------------------------------------------------------------------------
@@ -61,7 +66,7 @@ namespace NppLauncher {
           if (Directory.Exists (fobj.Folder)) {
             script = Path.Combine (fobj.Folder, "delall.py");
             if (File.Exists (script)) {
-              RunProgram (fobj.Folder, "python", "delall.py");
+              RunProgram (fobj.Folder, PythonExecutionFile, "delall.py");
             } else {
               DeleteAll (fobj.Folder);
             }
@@ -153,6 +158,44 @@ namespace NppLauncher {
       } else {
         rk.DeleteValue (AppName, false);
       }
+    }
+
+    string LocatePythonExecuteFile() {
+      string value = null;
+      var folder = LocatePythonPath();
+      if (folder != null) {
+        var python_file = Path.Combine(folder, "python.exe");
+        if (File.Exists(python_file)) {
+          value = python_file;
+        }
+      }
+
+      return value;
+    }
+
+    string LocatePythonPath() {
+      var targetVersion = "";
+      RegistryKey key;
+      string Value = null;
+
+      key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Wow6432Node\Python\PythonCore");
+      if (key == null) {
+        key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Python\PythonCore");
+      }
+
+      foreach (var ver in key.GetSubKeyNames()) {
+        targetVersion = ver;
+      }
+
+      if (targetVersion != "") {
+        key = key.OpenSubKey(targetVersion + @"\InstallPath");
+        var InstallPath = key.GetValue("");
+        if (InstallPath != null) {
+          Value = InstallPath.ToString();
+        }
+      }
+
+      return Value;
     }
 
     void ExitApp () {
