@@ -41,15 +41,12 @@ namespace NppLauncher {
     uint NppPID = 0;
     Thread DeleteThread;
     string ConfigFile;
+    string ConfigBackupFile;
     dynamic ConfigData;
     static string PythonExecutionFile = "python.exe";
     
     public Form1 () {
       AppName = System.Reflection.Assembly.GetExecutingAssembly ().GetName ().Name;
-      var python = LocatePythonExecuteFile();
-      if (python != null) {
-        PythonExecutionFile = python;
-      }
       InitializeComponent();
     }
 
@@ -330,6 +327,16 @@ namespace NppLauncher {
     }
 
     private void Form1_Load (object sender, EventArgs e) {
+      //
+      // Locate python path
+      //
+      var python = LocatePythonExecuteFile();
+      if (python != null) {
+        PythonExecutionFile = python;
+      }
+      //
+      // Enable timer
+      //
       timer1.Enabled = true;
       checkBox_Startup.Checked = GetStartupRegistry ();
       //
@@ -337,12 +344,23 @@ namespace NppLauncher {
       //
       ConfigFile = System.Reflection.Assembly.GetEntryAssembly ().Location;
       ConfigFile = ConfigFile.Replace (".exe", ".cfg");
+      ConfigBackupFile = ConfigFile + "_backup";
       //
       // Read Config File
       //
       if (File.Exists (ConfigFile)) {
         string json_data = File.ReadAllText (ConfigFile);
-        ConfigData = json_decode (json_data);
+        try {
+          ConfigData = json_decode(json_data);          
+          File.WriteAllText(ConfigBackupFile, json_data);
+        } catch (Exception ex) {
+          if (File.Exists(ConfigBackupFile)) {
+            json_data = File.ReadAllText(ConfigBackupFile);
+            ConfigData = json_decode(json_data);
+          } else {
+            ConfigData = new ExpandoObject();
+          }
+        }        
       } else {
         ConfigData = new ExpandoObject ();
       }
