@@ -170,14 +170,14 @@ namespace NppLauncher {
       return value;
     }
 
-    string LocatePythonPath() {
+    string GetPythonPath(string locate) {
       var targetVersion = "";
       RegistryKey key;
       string Value = null;
 
-      key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Wow6432Node\Python\PythonCore");
+      key = Registry.LocalMachine.OpenSubKey(locate);
       if (key == null) {
-        key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Python\PythonCore");
+        return null;        
       }
 
       foreach (var ver in key.GetSubKeyNames()) {
@@ -186,10 +186,24 @@ namespace NppLauncher {
 
       if (targetVersion != "") {
         key = key.OpenSubKey(targetVersion + @"\InstallPath");
+        if (key == null) {
+          return null;
+        }
         var InstallPath = key.GetValue("");
         if (InstallPath != null) {
           Value = InstallPath.ToString();
         }
+      }
+
+      return Value;
+    }
+    
+    string LocatePythonPath() {      
+      string Value = null;
+
+      Value = GetPythonPath(@"SOFTWARE\Wow6432Node\Python\PythonCore");
+      if (Value == null) {
+        Value = GetPythonPath(@"SOFTWARE\Python\PythonCore");
       }
 
       return Value;
