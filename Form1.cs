@@ -719,20 +719,24 @@ namespace NppLauncher {
 
     void AppEdit () {
       var group_name = comboBox_Group.Text;
-      var item = listView_Apps.SelectedItems[0];
-      var app_name = item.Text;
-      var app = GetAppObject (group_name, app_name);
-      var Form = new AppEditorForm ();
-      Form.ConfigData = app;
-      var result = Form.ShowDialog ();
-      if (result == DialogResult.OK) {
-        app = Form.ConfigData;
-        //
-        // Add to UI
-        //
-        item.SubItems[0].Text = app.Name;
-        item.SubItems[1].Text = app.Target;
-        item.SubItems[2].Text = app.Args;
+      if (listView_Apps.SelectedItems.Count > 0) {
+        var item = listView_Apps.SelectedItems[0];
+        var app_name = item.Text;
+        var app = GetAppObject(group_name, app_name);
+        var Form = new AppEditorForm();
+        Form.ConfigData = app;
+        var result = Form.ShowDialog();
+        if (result == DialogResult.OK) {
+            app = Form.ConfigData;
+            //
+            // Add to UI
+            //
+            item.SubItems[0].Text = app.Name;
+            item.SubItems[1].Text = app.Target;
+            item.SubItems[2].Text = app.Args;
+        }
+      } else {
+        MessageBox.Show("SelectedItems not found", "ERROR");
       }
     }
 
