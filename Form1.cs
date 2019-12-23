@@ -553,23 +553,25 @@ namespace NppLauncher {
     void AppRemove () {
       string gname = comboBox_Group.Text;
       if (listView_Apps.SelectedItems.Count > 0) {
-        string aname = listView_Apps.SelectedItems[0].Text;
-        //
-        // Remove from UI
-        //
-        var match_item = listView_Apps.FindItemWithText (aname);
-        listView_Apps.Items.Remove (match_item);
-        //
-        // Remove from Config
-        //
-        var gdict = (IDictionary<string, object>)ConfigData.Group;
-        object value;
-        if (gdict.TryGetValue (gname, out value)) {
-          List<dynamic> apps = (List<dynamic>)value;
-          foreach (dynamic app in apps) {
-            if (app.Name == aname) {
-              apps.Remove (app);
-              break;
+        foreach(dynamic list_item in listView_Apps.SelectedItems) {
+          string aname = list_item.Text;
+          //
+          // Remove from UI
+          //
+          var match_item = listView_Apps.FindItemWithText(aname);
+          listView_Apps.Items.Remove(match_item);
+          //
+          // Remove from Config
+          //
+          var gdict = (IDictionary<string, object>)ConfigData.Group;
+          object value;
+          if (gdict.TryGetValue(gname, out value)) {
+            List<dynamic> apps = (List<dynamic>)value;
+            foreach (dynamic app in apps) {
+              if (app.Name == aname) {
+                apps.Remove(app);
+                break;
+              }
             }
           }
         }
@@ -907,7 +909,10 @@ namespace NppLauncher {
           }
         } catch {
           MessageBox.Show("Invalid data format for NppLauncher", "ERROR");
-        }        
+        }
+      } else if (e.KeyCode == Keys.Delete) {
+        e.SuppressKeyPress = true;
+        AppRemove();
       }
     }
   } // Form1
