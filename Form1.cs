@@ -822,5 +822,93 @@ namespace NppLauncher {
 
       return HDDs;
     }
+
+    string GetNewName(List<dynamic> apps, string app_name) {
+      string new_name = app_name;
+      int i;
+      bool found;
+
+      for (i = 0; i < 100; i++) {
+        if (i == 0) {
+          new_name = app_name;
+        } else {
+          new_name = app_name + "_" + i;
+        }
+        found = false;
+        foreach (dynamic app in apps) {
+          if (app.Name == new_name) {
+            found = true;
+          }
+        }
+        if (found == false) {
+          break;
+        }
+      }
+
+      return new_name;
+    }
+
+    private void listView_Apps_KeyDown(object sender, KeyEventArgs e) {
+      string jstr;
+      dynamic export_data;
+      dynamic import_data;
+      string gname = comboBox_Group.Text;
+      var gdict = (IDictionary<string, object>)ConfigData.Group;
+      object value;
+      List<dynamic> gapps = null;
+      if (gdict.TryGetValue(gname, out value)) {
+        gapps = (List<dynamic>)value;
+      }
+      //
+      // Create export object
+      //
+      export_data = new ExpandoObject() as IDictionary<string, object>;
+      export_data.NppLauncher = new List<System.Object> { };
+
+      if (e.Control && e.KeyCode == Keys.C) {
+        e.SuppressKeyPress = true;
+        if (listView_Apps.SelectedItems.Count > 0) {
+          foreach (dynamic list_item in listView_Apps.SelectedItems) {
+            string aname = list_item.Text;
+            foreach (dynamic app in gapps) {
+              if (app.Name == aname) {
+                jstr = json_encode(app);
+                export_data.NppLauncher.Add(app);
+                break;
+              }
+            }
+          }
+          jstr = json_encode(export_data);
+          Clipboard.SetText(jstr);
+        } else {
+          MessageBox.Show("No item be selected", "INFO");
+        }
+      } else if (e.Control && e.KeyCode == Keys.V) {
+        e.SuppressKeyPress = true;
+        string new_name;
+        jstr = Clipboard.GetText();
+        try {
+          import_data = json_decode(jstr);
+          foreach (dynamic app in import_data.NppLauncher) {
+            new_name = GetNewName(gapps, app.Name);
+            dynamic new_app = DeepCopy(app);
+            new_app.Name = new_name;
+            //
+            // Add to UI
+            //
+            ListViewItem item = new ListViewItem(new_app.Name);
+            item.SubItems.Add(new_app.Target);
+            item.SubItems.Add(new_app.Args);
+            listView_Apps.Items.Add(item);
+            //
+            // Add to Config
+            //
+            gapps.Add(new_app);
+          }
+        } catch {
+          MessageBox.Show("Invalid data format for NppLauncher", "ERROR");
+        }        
+      }
+    }
   } // Form1
 }
