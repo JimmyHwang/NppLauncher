@@ -910,6 +910,11 @@ namespace NppLauncher {
         } catch {
           MessageBox.Show("Invalid data format for NppLauncher", "ERROR");
         }
+      } else if (e.Control && e.KeyCode == Keys.A) {
+        e.SuppressKeyPress = true;
+        foreach (dynamic list_item in listView_Apps.Items) {
+          list_item.Selected = true;
+        }
       } else if (e.KeyCode == Keys.Delete) {
         e.SuppressKeyPress = true;
         AppRemove();
