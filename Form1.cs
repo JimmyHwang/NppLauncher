@@ -262,8 +262,9 @@ namespace NppLauncher {
     void RefreshGroupToolStripMenu () {
       groupToolStripMenuItem.DropDownItems.Clear ();
       var glist = (IDictionary<string, object>)ConfigData.Group;
+      SortedDictionary<string, object> glist_sorted = new SortedDictionary<string, object>(glist);
       var glist2 = new Dictionary<string, object> (glist); // WORKAROUND for glists.Keys.Contains() always return true even key removed
-      foreach (KeyValuePair<string, object> kvp in glist) {
+      foreach (KeyValuePair<string, object> kvp in glist_sorted) {
         groupToolStripMenuItem.DropDownItems.Add (kvp.Key, null, groupToolStripMenuItem_Click);
       }
     }
@@ -272,8 +273,9 @@ namespace NppLauncher {
       var current = comboBox_Group.Text;
       comboBox_Group.Items.Clear ();
       var glist = (IDictionary<string, object>)ConfigData.Group;
+      SortedDictionary<string, object> glist_sorted = new SortedDictionary<string, object>(glist);
       var glist2 = new Dictionary<string, object> (glist); // WORKAROUND for glists.Keys.Contains() always return true even key removed
-      foreach (KeyValuePair<string, object> kvp in glist) {
+      foreach (KeyValuePair<string, object> kvp in glist_sorted) {
         comboBox_Group.Items.Add (kvp.Key);
       }
       if (current != "" && glist2.ContainsKey (current)) {
