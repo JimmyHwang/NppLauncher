@@ -82,8 +82,7 @@
             this.helpToolStripMenuItem});
       this.menuStrip1.Location = new System.Drawing.Point(0, 0);
       this.menuStrip1.Name = "menuStrip1";
-      this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 3, 0, 3);
-      this.menuStrip1.Size = new System.Drawing.Size(1075, 29);
+      this.menuStrip1.Size = new System.Drawing.Size(806, 24);
       this.menuStrip1.TabIndex = 1;
       this.menuStrip1.Text = "menuStrip1";
       // 
@@ -94,25 +93,25 @@
             this.toolStripMenuItem1,
             this.exitToolStripMenuItem1});
       this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-      this.fileToolStripMenuItem.Size = new System.Drawing.Size(45, 23);
+      this.fileToolStripMenuItem.Size = new System.Drawing.Size(38, 20);
       this.fileToolStripMenuItem.Text = "File";
       // 
       // saveToolStripMenuItem
       // 
       this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-      this.saveToolStripMenuItem.Size = new System.Drawing.Size(117, 26);
+      this.saveToolStripMenuItem.Size = new System.Drawing.Size(101, 22);
       this.saveToolStripMenuItem.Text = "Save";
       this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
       // 
       // toolStripMenuItem1
       // 
       this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-      this.toolStripMenuItem1.Size = new System.Drawing.Size(114, 6);
+      this.toolStripMenuItem1.Size = new System.Drawing.Size(98, 6);
       // 
       // exitToolStripMenuItem1
       // 
       this.exitToolStripMenuItem1.Name = "exitToolStripMenuItem1";
-      this.exitToolStripMenuItem1.Size = new System.Drawing.Size(117, 26);
+      this.exitToolStripMenuItem1.Size = new System.Drawing.Size(101, 22);
       this.exitToolStripMenuItem1.Text = "Exit";
       this.exitToolStripMenuItem1.Click += new System.EventHandler(this.exitToolStripMenuItem1_Click);
       // 
@@ -125,46 +124,46 @@
             this.listFoldersToolStripMenuItem,
             this.runDelallpyToolStripMenuItem});
       this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-      this.editToolStripMenuItem.Size = new System.Drawing.Size(48, 23);
+      this.editToolStripMenuItem.Size = new System.Drawing.Size(41, 20);
       this.editToolStripMenuItem.Text = "Edit";
       // 
       // optionsToolStripMenuItem
       // 
       this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
-      this.optionsToolStripMenuItem.Size = new System.Drawing.Size(239, 26);
+      this.optionsToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
       this.optionsToolStripMenuItem.Text = "Options";
       this.optionsToolStripMenuItem.Click += new System.EventHandler(this.optionsToolStripMenuItem_Click);
       // 
       // toolStripMenuItem2
       // 
       this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-      this.toolStripMenuItem2.Size = new System.Drawing.Size(236, 6);
+      this.toolStripMenuItem2.Size = new System.Drawing.Size(196, 6);
       // 
       // checkRemoveFoldersToolStripMenuItem
       // 
       this.checkRemoveFoldersToolStripMenuItem.Name = "checkRemoveFoldersToolStripMenuItem";
-      this.checkRemoveFoldersToolStripMenuItem.Size = new System.Drawing.Size(239, 26);
+      this.checkRemoveFoldersToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
       this.checkRemoveFoldersToolStripMenuItem.Text = "Check RemoveFolders";
       this.checkRemoveFoldersToolStripMenuItem.Click += new System.EventHandler(this.checkRemoveFoldersToolStripMenuItem_Click);
       // 
       // listFoldersToolStripMenuItem
       // 
       this.listFoldersToolStripMenuItem.Name = "listFoldersToolStripMenuItem";
-      this.listFoldersToolStripMenuItem.Size = new System.Drawing.Size(239, 26);
+      this.listFoldersToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
       this.listFoldersToolStripMenuItem.Text = "List Folders";
       this.listFoldersToolStripMenuItem.Click += new System.EventHandler(this.listFoldersToolStripMenuItem_Click);
       // 
       // runDelallpyToolStripMenuItem
       // 
       this.runDelallpyToolStripMenuItem.Name = "runDelallpyToolStripMenuItem";
-      this.runDelallpyToolStripMenuItem.Size = new System.Drawing.Size(239, 26);
+      this.runDelallpyToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
       this.runDelallpyToolStripMenuItem.Text = "Run delall.py";
       this.runDelallpyToolStripMenuItem.Click += new System.EventHandler(this.runDelallpyToolStripMenuItem_Click);
       // 
       // helpToolStripMenuItem
       // 
       this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-      this.helpToolStripMenuItem.Size = new System.Drawing.Size(53, 23);
+      this.helpToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
       this.helpToolStripMenuItem.Text = "Help";
       // 
       // timer1
@@ -175,10 +174,9 @@
       // 
       // button_Minimum
       // 
-      this.button_Minimum.Location = new System.Drawing.Point(959, 329);
-      this.button_Minimum.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+      this.button_Minimum.Location = new System.Drawing.Point(719, 247);
       this.button_Minimum.Name = "button_Minimum";
-      this.button_Minimum.Size = new System.Drawing.Size(100, 31);
+      this.button_Minimum.Size = new System.Drawing.Size(75, 23);
       this.button_Minimum.TabIndex = 2;
       this.button_Minimum.Text = "Minimum";
       this.button_Minimum.UseVisualStyleBackColor = true;
@@ -187,10 +185,9 @@
       // checkBox_Startup
       // 
       this.checkBox_Startup.AutoSize = true;
-      this.checkBox_Startup.Location = new System.Drawing.Point(16, 368);
-      this.checkBox_Startup.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+      this.checkBox_Startup.Location = new System.Drawing.Point(12, 276);
       this.checkBox_Startup.Name = "checkBox_Startup";
-      this.checkBox_Startup.Size = new System.Drawing.Size(122, 21);
+      this.checkBox_Startup.Size = new System.Drawing.Size(91, 16);
       this.checkBox_Startup.TabIndex = 3;
       this.checkBox_Startup.Text = "Run at Startup";
       this.checkBox_Startup.UseVisualStyleBackColor = true;
@@ -212,35 +209,35 @@
             this.groupToolStripMenuItem,
             this.exitToolStripMenuItem});
       this.contextMenuStrip1.Name = "contextMenuStrip1";
-      this.contextMenuStrip1.Size = new System.Drawing.Size(181, 76);
+      this.contextMenuStrip1.Size = new System.Drawing.Size(156, 70);
       // 
       // showWindowToolStripMenuItem
       // 
       this.showWindowToolStripMenuItem.Name = "showWindowToolStripMenuItem";
-      this.showWindowToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+      this.showWindowToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
       this.showWindowToolStripMenuItem.Text = "Show Window";
       this.showWindowToolStripMenuItem.Click += new System.EventHandler(this.showWindowToolStripMenuItem_Click);
       // 
       // groupToolStripMenuItem
       // 
       this.groupToolStripMenuItem.Name = "groupToolStripMenuItem";
-      this.groupToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+      this.groupToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
       this.groupToolStripMenuItem.Text = "Launch Group";
       // 
       // exitToolStripMenuItem
       // 
       this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-      this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+      this.exitToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
       this.exitToolStripMenuItem.Text = "Exit";
       this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
       // 
       // comboBox_Group
       // 
+      this.comboBox_Group.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
       this.comboBox_Group.FormattingEnabled = true;
-      this.comboBox_Group.Location = new System.Drawing.Point(16, 36);
-      this.comboBox_Group.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+      this.comboBox_Group.Location = new System.Drawing.Point(12, 27);
       this.comboBox_Group.Name = "comboBox_Group";
-      this.comboBox_Group.Size = new System.Drawing.Size(895, 24);
+      this.comboBox_Group.Size = new System.Drawing.Size(672, 20);
       this.comboBox_Group.Sorted = true;
       this.comboBox_Group.TabIndex = 4;
       this.comboBox_Group.SelectedValueChanged += new System.EventHandler(this.comboBox_Group_SelectedValueChanged);
@@ -252,10 +249,10 @@
             this.columnHeader_Target,
             this.columnHeader_Args});
       this.listView_Apps.FullRowSelect = true;
-      this.listView_Apps.Location = new System.Drawing.Point(16, 71);
-      this.listView_Apps.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+      this.listView_Apps.HideSelection = false;
+      this.listView_Apps.Location = new System.Drawing.Point(12, 53);
       this.listView_Apps.Name = "listView_Apps";
-      this.listView_Apps.Size = new System.Drawing.Size(933, 288);
+      this.listView_Apps.Size = new System.Drawing.Size(701, 217);
       this.listView_Apps.Sorting = System.Windows.Forms.SortOrder.Ascending;
       this.listView_Apps.TabIndex = 5;
       this.listView_Apps.UseCompatibleStateImageBehavior = false;
@@ -281,10 +278,9 @@
       // 
       // button_Add
       // 
-      this.button_Add.Location = new System.Drawing.Point(959, 71);
-      this.button_Add.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+      this.button_Add.Location = new System.Drawing.Point(719, 53);
       this.button_Add.Name = "button_Add";
-      this.button_Add.Size = new System.Drawing.Size(100, 31);
+      this.button_Add.Size = new System.Drawing.Size(75, 23);
       this.button_Add.TabIndex = 7;
       this.button_Add.Text = "Add";
       this.button_Add.UseVisualStyleBackColor = true;
@@ -292,10 +288,9 @@
       // 
       // button_AddGroup
       // 
-      this.button_AddGroup.Location = new System.Drawing.Point(959, 36);
-      this.button_AddGroup.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+      this.button_AddGroup.Location = new System.Drawing.Point(719, 27);
       this.button_AddGroup.Name = "button_AddGroup";
-      this.button_AddGroup.Size = new System.Drawing.Size(45, 31);
+      this.button_AddGroup.Size = new System.Drawing.Size(34, 23);
       this.button_AddGroup.TabIndex = 8;
       this.button_AddGroup.Text = "+";
       this.button_AddGroup.UseVisualStyleBackColor = true;
@@ -303,10 +298,9 @@
       // 
       // button_DelGroup
       // 
-      this.button_DelGroup.Location = new System.Drawing.Point(1012, 36);
-      this.button_DelGroup.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+      this.button_DelGroup.Location = new System.Drawing.Point(759, 27);
       this.button_DelGroup.Name = "button_DelGroup";
-      this.button_DelGroup.Size = new System.Drawing.Size(47, 31);
+      this.button_DelGroup.Size = new System.Drawing.Size(35, 23);
       this.button_DelGroup.TabIndex = 9;
       this.button_DelGroup.Text = "-";
       this.button_DelGroup.UseVisualStyleBackColor = true;
@@ -315,20 +309,18 @@
       // checkBox_Minimize
       // 
       this.checkBox_Minimize.AutoSize = true;
-      this.checkBox_Minimize.Location = new System.Drawing.Point(145, 368);
-      this.checkBox_Minimize.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+      this.checkBox_Minimize.Location = new System.Drawing.Point(109, 276);
       this.checkBox_Minimize.Name = "checkBox_Minimize";
-      this.checkBox_Minimize.Size = new System.Drawing.Size(150, 21);
+      this.checkBox_Minimize.Size = new System.Drawing.Size(115, 16);
       this.checkBox_Minimize.TabIndex = 10;
       this.checkBox_Minimize.Text = "Minimize at Startup";
       this.checkBox_Minimize.UseVisualStyleBackColor = true;
       // 
       // button_Remove
       // 
-      this.button_Remove.Location = new System.Drawing.Point(959, 109);
-      this.button_Remove.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+      this.button_Remove.Location = new System.Drawing.Point(719, 82);
       this.button_Remove.Name = "button_Remove";
-      this.button_Remove.Size = new System.Drawing.Size(100, 31);
+      this.button_Remove.Size = new System.Drawing.Size(75, 23);
       this.button_Remove.TabIndex = 12;
       this.button_Remove.Text = "Remove";
       this.button_Remove.UseVisualStyleBackColor = true;
@@ -336,10 +328,9 @@
       // 
       // button_EditGroup
       // 
-      this.button_EditGroup.Location = new System.Drawing.Point(920, 36);
-      this.button_EditGroup.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+      this.button_EditGroup.Location = new System.Drawing.Point(690, 27);
       this.button_EditGroup.Name = "button_EditGroup";
-      this.button_EditGroup.Size = new System.Drawing.Size(31, 31);
+      this.button_EditGroup.Size = new System.Drawing.Size(23, 23);
       this.button_EditGroup.TabIndex = 13;
       this.button_EditGroup.Text = "...";
       this.button_EditGroup.UseVisualStyleBackColor = true;
@@ -347,10 +338,9 @@
       // 
       // button_LanuchAll
       // 
-      this.button_LanuchAll.Location = new System.Drawing.Point(959, 291);
-      this.button_LanuchAll.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+      this.button_LanuchAll.Location = new System.Drawing.Point(719, 218);
       this.button_LanuchAll.Name = "button_LanuchAll";
-      this.button_LanuchAll.Size = new System.Drawing.Size(100, 31);
+      this.button_LanuchAll.Size = new System.Drawing.Size(75, 23);
       this.button_LanuchAll.TabIndex = 14;
       this.button_LanuchAll.Text = "Launch All";
       this.button_LanuchAll.UseVisualStyleBackColor = true;
@@ -358,10 +348,9 @@
       // 
       // button_Edit
       // 
-      this.button_Edit.Location = new System.Drawing.Point(959, 148);
-      this.button_Edit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+      this.button_Edit.Location = new System.Drawing.Point(719, 111);
       this.button_Edit.Name = "button_Edit";
-      this.button_Edit.Size = new System.Drawing.Size(100, 31);
+      this.button_Edit.Size = new System.Drawing.Size(75, 23);
       this.button_Edit.TabIndex = 15;
       this.button_Edit.Text = "Edit";
       this.button_Edit.UseVisualStyleBackColor = true;
@@ -376,41 +365,41 @@
             this.removeToolStripMenuItem,
             this.editToolStripMenuItem1});
       this.contextMenuStrip_App.Name = "contextMenuStrip_App";
-      this.contextMenuStrip_App.Size = new System.Drawing.Size(136, 100);
+      this.contextMenuStrip_App.Size = new System.Drawing.Size(122, 92);
       // 
       // runToolStripMenuItem
       // 
       this.runToolStripMenuItem.Name = "runToolStripMenuItem";
-      this.runToolStripMenuItem.Size = new System.Drawing.Size(135, 24);
+      this.runToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
       this.runToolStripMenuItem.Text = "Run";
       this.runToolStripMenuItem.Click += new System.EventHandler(this.runToolStripMenuItem_Click);
       // 
       // cloneToolStripMenuItem
       // 
       this.cloneToolStripMenuItem.Name = "cloneToolStripMenuItem";
-      this.cloneToolStripMenuItem.Size = new System.Drawing.Size(135, 24);
+      this.cloneToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
       this.cloneToolStripMenuItem.Text = "Clone";
       this.cloneToolStripMenuItem.Click += new System.EventHandler(this.cloneToolStripMenuItem_Click);
       // 
       // removeToolStripMenuItem
       // 
       this.removeToolStripMenuItem.Name = "removeToolStripMenuItem";
-      this.removeToolStripMenuItem.Size = new System.Drawing.Size(135, 24);
+      this.removeToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
       this.removeToolStripMenuItem.Text = "Remove";
       this.removeToolStripMenuItem.Click += new System.EventHandler(this.removeToolStripMenuItem_Click);
       // 
       // editToolStripMenuItem1
       // 
       this.editToolStripMenuItem1.Name = "editToolStripMenuItem1";
-      this.editToolStripMenuItem1.Size = new System.Drawing.Size(135, 24);
+      this.editToolStripMenuItem1.Size = new System.Drawing.Size(121, 22);
       this.editToolStripMenuItem1.Text = "Edit";
       this.editToolStripMenuItem1.Click += new System.EventHandler(this.editToolStripMenuItem1_Click);
       // 
       // Form1
       // 
-      this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+      this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(1075, 405);
+      this.ClientSize = new System.Drawing.Size(806, 304);
       this.Controls.Add(this.button_Edit);
       this.Controls.Add(this.button_LanuchAll);
       this.Controls.Add(this.button_EditGroup);
@@ -426,7 +415,6 @@
       this.Controls.Add(this.menuStrip1);
       this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
       this.MainMenuStrip = this.menuStrip1;
-      this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
       this.Name = "Form1";
       this.Text = "Npp Launcher";
       this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);

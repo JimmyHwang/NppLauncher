@@ -22,6 +22,7 @@ namespace NppLauncher {
     private const int SW_MINIMIZE = 6;
     private const int SW_RESTORE = 9;
     private const int SW_SHOWDEFAULT = 10;
+    bool comboBox_Group_Event_Enable = true;
 
     [DllImport ("user32.dll")]
     [return: MarshalAs (UnmanagedType.Bool)]
@@ -494,7 +495,9 @@ namespace NppLauncher {
     }
 
     private void comboBox_Group_SelectedValueChanged (object sender, EventArgs e) {
-      RefreshListviewApps ();
+      if (comboBox_Group_Event_Enable == true) {
+        RefreshListviewApps();
+      }      
     }
 
     private void button_DelGroup_Click (object sender, EventArgs e) {
@@ -610,14 +613,16 @@ namespace NppLauncher {
           //
           // Update UI
           //
+          comboBox_Group_Event_Enable = false;
           var index = comboBox_Group.Items.IndexOf (gname);
           if (form.CloneFlag == false) {
             comboBox_Group.Items[index] = new_gname;
           } else {
             comboBox_Group.Items.Add(new_gname);
           }
-
+          comboBox_Group_Event_Enable = true;
         }
+        RefreshComboBoxGroup();
         RefreshGroupToolStripMenu ();
       }
     }
