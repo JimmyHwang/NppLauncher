@@ -21,7 +21,10 @@ namespace NppLauncher {
       if (!isset (ConfigData, "Name")) {
         ConfigData.Name = "";
       }
-      if (!isset (ConfigData, "Target")) {
+      if (!isset (ConfigData, "PreExec")) {
+        ConfigData.PreExec = "";
+      }
+      if (!isset(ConfigData, "Target")) {
         ConfigData.Target = "";
       }
       if (!isset (ConfigData, "Args")) {
@@ -43,6 +46,7 @@ namespace NppLauncher {
       comboBox_WindowMode.SelectedIndex = (int)ConfigData.WindowMode;
       comboBox_WaitMode.SelectedIndex = (int)ConfigData.WaitMode;
       textBox_Name.Text = ConfigData.Name;
+      textBox_PreExec.Text = ConfigData.PreExec;
       textBox_Target.Text = ConfigData.Target;
       textBox_Args.Text = ConfigData.Args;
       textBox_Folder.Text = ConfigData.Folder;
@@ -52,6 +56,7 @@ namespace NppLauncher {
       ConfigData.WindowMode = comboBox_WindowMode.SelectedIndex;
       ConfigData.WaitMode = comboBox_WaitMode.SelectedIndex;
       ConfigData.Name = textBox_Name.Text;
+      ConfigData.PreExec = textBox_PreExec.Text;
       ConfigData.Target = textBox_Target.Text;
       ConfigData.Args = textBox_Args.Text;
       ConfigData.Folder = textBox_Folder.Text;

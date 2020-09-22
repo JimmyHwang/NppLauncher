@@ -636,6 +636,22 @@ namespace NppLauncher {
       form.InitConfigData ();
       app = form.ConfigData;
       //
+      // Pre-Exec commands
+      //
+      if (app.PreExec != "") {
+        ProcessStartInfo pre_exec = new ProcessStartInfo();
+        pre_exec.FileName = "cmd.exe";
+        pre_exec.Arguments = "/C "+app.PreExec;
+        pre_exec.CreateNoWindow = true;
+        pre_exec.UseShellExecute = false;
+        pre_exec.WindowStyle = ProcessWindowStyle.Hidden;
+        pre_exec.CreateNoWindow = false;
+        if (app.Folder != "") {
+          pre_exec.WorkingDirectory = app.Folder;
+        }
+        Process proc = Process.Start(pre_exec);
+      }
+      //
       // Launch Application
       //
       ProcessStartInfo start = new ProcessStartInfo ();
