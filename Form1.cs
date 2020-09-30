@@ -650,6 +650,7 @@ namespace NppLauncher {
           pre_exec.WorkingDirectory = app.Folder;
         }
         Process proc = Process.Start(pre_exec);
+        proc.WaitForExit();
       }
       //
       // Launch Application
