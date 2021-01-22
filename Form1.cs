@@ -319,7 +319,7 @@ namespace NppLauncher {
       // Set comboBox_Group
       //
       if (!ConfigData.ContainsKey("Group")) {
-        ConfigData.Group = new ExpandoObject () as IDictionary<string, object>;
+        ConfigData.Group = new JObject();
       }
       RefreshComboBoxGroup ();
       RefreshGroupToolStripMenu ();
@@ -373,11 +373,11 @@ namespace NppLauncher {
             json_data = File.ReadAllText(ConfigBackupFile);
             ConfigData = json_decode(json_data);
           } else {
-            ConfigData = new ExpandoObject();
+            ConfigData = new JObject {};
           }
         }        
       } else {
-        ConfigData = new ExpandoObject ();
+        ConfigData = new JObject();
       }
       Config2UI ();
       //
