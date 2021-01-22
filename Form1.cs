@@ -10,6 +10,7 @@ using System.Threading;
 using System.Collections.Generic;
 using static DNA64.Library.Common;
 using System.Collections;
+using Newtonsoft.Json.Linq;
 
 namespace NppLauncher {
   public partial class Form1 : Form {
@@ -126,7 +127,7 @@ namespace NppLauncher {
         //Console.WriteLine("Error reading from {0}. Message = {1}", path, e.Message);
       }
 
-      if (ConfigData.Minimize) {
+      if ((bool)ConfigData.Minimize) {
         if (Startup == 1 && Ticks == DelayMinimize) {
           Startup = 0;
           HideApp ();
@@ -262,24 +263,20 @@ namespace NppLauncher {
 
     void RefreshGroupToolStripMenu () {
       groupToolStripMenuItem.DropDownItems.Clear ();
-      var glist = (IDictionary<string, object>)ConfigData.Group;
-      SortedDictionary<string, object> glist_sorted = new SortedDictionary<string, object>(glist);
-      var glist2 = new Dictionary<string, object> (glist); // WORKAROUND for glists.Keys.Contains() always return true even key removed
-      foreach (KeyValuePair<string, object> kvp in glist_sorted) {
-        groupToolStripMenuItem.DropDownItems.Add (kvp.Key, null, groupToolStripMenuItem_Click);
+      var glist = ConfigData.Group;
+      foreach (JProperty prop in glist.Properties()) {
+        groupToolStripMenuItem.DropDownItems.Add (prop.Name, null, groupToolStripMenuItem_Click);
       }
     }
 
     void RefreshComboBoxGroup () {
       var current = comboBox_Group.Text;
       comboBox_Group.Items.Clear ();
-      var glist = (IDictionary<string, object>)ConfigData.Group;
-      SortedDictionary<string, object> glist_sorted = new SortedDictionary<string, object>(glist);
-      var glist2 = new Dictionary<string, object> (glist); // WORKAROUND for glists.Keys.Contains() always return true even key removed
-      foreach (KeyValuePair<string, object> kvp in glist_sorted) {
-        comboBox_Group.Items.Add (kvp.Key);
+      var glist = ConfigData.Group;
+      foreach (JProperty prop in glist.Properties()) {
+        comboBox_Group.Items.Add(prop.Name);
       }
-      if (current != "" && glist2.ContainsKey (current)) {
+      if (current != "" && glist.ContainsKey (current)) {
         comboBox_Group.Text = current;
       } else if (comboBox_Group.Items.Count > 0) {
         comboBox_Group.SelectedIndex = 0;
@@ -291,28 +288,29 @@ namespace NppLauncher {
     void RefreshListviewApps () {
       object value;
       if (comboBox_Group.Text != "") {
-        var glist = (IDictionary<string, object>)ConfigData.Group;
-        var result = glist.TryGetValue (comboBox_Group.Text, out value);
-        List<dynamic> apps = (List<dynamic>)value;
-        listView_Apps.Items.Clear ();
-        foreach (dynamic app in apps) {
-          if (!isset (app, "Args")) {
-            app.Args = "";
+        var glist = ConfigData.Group;
+        if (glist.ContainsKey(comboBox_Group.Text)) {
+          var apps = glist[comboBox_Group.Text];          
+          listView_Apps.Items.Clear();
+          foreach (dynamic app in apps) {
+            if (!app.ContainsKey("Args")) {
+              app.Args = "";
+            }
+            var item = new ListViewItem();
+            item.Text = app.Name;
+            item.SubItems.Add((string)app.Target);
+            item.SubItems.Add((string)app.Args);
+            listView_Apps.Items.Add(item);
           }
-          var item = new ListViewItem ();
-          item.Text = app.Name;
-          item.SubItems.Add (app.Target);
-          item.SubItems.Add (app.Args);
-          listView_Apps.Items.Add (item);
-        }
+        }        
       }
     }
 
     void Config2UI () {
-      if (!isset (ConfigData, "Startup")) {
+      if (!ConfigData.ContainsKey("Startup")) {
         ConfigData.Startup = false;
       }
-      if (!isset (ConfigData, "Minimize")) {
+      if (!ConfigData.ContainsKey("Minimize")) {
         ConfigData.Minimize = false;
       }
       checkBox_Startup.Checked = ConfigData.Startup;
@@ -320,17 +318,17 @@ namespace NppLauncher {
       //
       // Set comboBox_Group
       //
-      if (!isset (ConfigData, "Group")) {
+      if (!ConfigData.ContainsKey("Group")) {
         ConfigData.Group = new ExpandoObject () as IDictionary<string, object>;
       }
       RefreshComboBoxGroup ();
       RefreshGroupToolStripMenu ();
-      if (isset (ConfigData, "DefaultGroup")) {
-        var group_name = ConfigData.DefaultGroup;
-        var gdict = (IDictionary<string, object>)ConfigData.Group;
+      if (ConfigData.ContainsKey("DefaultGroup")) {
+        string group_name = ConfigData.DefaultGroup;
+        var glist = ConfigData.Group;
         object value;
-        bool st = gdict.TryGetValue (group_name, out value);
-        if (st) {
+        if (glist.ContainsKey(group_name)) {
+          value = glist.group_name;
           comboBox_Group.Text = group_name;
         }
       }
@@ -486,9 +484,8 @@ namespace NppLauncher {
           MessageBox.Show ("Data already exists", "ERROR");
         } else {
           comboBox_Group.Items.Add (Data);
-          var gdict = (IDictionary<string, object>)ConfigData.Group;
-          var empty_array = new List<System.Object> { };
-          gdict.Add (Data, empty_array);
+          var glist = ConfigData.Group;
+          glist[Data] = new JArray();
         }
         RefreshGroupToolStripMenu ();
       }
@@ -568,10 +565,9 @@ namespace NppLauncher {
           //
           // Remove from Config
           //
-          var gdict = (IDictionary<string, object>)ConfigData.Group;
-          object value;
-          if (gdict.TryGetValue(gname, out value)) {
-            List<dynamic> apps = (List<dynamic>)value;
+          var glist = ConfigData.Group;
+          if (glist.ContainsKey(gname)) {
+            var apps = glist[gname];
             foreach (dynamic app in apps) {
               if (app.Name == aname) {
                 apps.Remove(app);
@@ -849,7 +845,7 @@ namespace NppLauncher {
       return HDDs;
     }
 
-    string GetNewName(List<dynamic> apps, string app_name) {
+    string GetNewName(JArray apps, string app_name) {
       string new_name = app_name;
       int i;
       bool found;
@@ -879,18 +875,17 @@ namespace NppLauncher {
       dynamic export_data;
       dynamic import_data;
       string gname = comboBox_Group.Text;
-      var gdict = (IDictionary<string, object>)ConfigData.Group;
-      object value;
-      List<dynamic> gapps = null;
-      if (gdict.TryGetValue(gname, out value)) {
-        gapps = (List<dynamic>)value;
+      var glist = ConfigData.Group;
+      JArray gapps = new JArray();
+
+      if (glist.ContainsKey(gname)) {
+        gapps = glist[gname];
       }
       //
       // Create export object
       //
-      export_data = new ExpandoObject() as IDictionary<string, object>;
-      export_data.NppLauncher = new List<System.Object> { };
-
+      export_data = new JObject {};
+      export_data.NppLauncher = new JArray ();
       if (e.Control && e.KeyCode == Keys.C) {
         e.SuppressKeyPress = true;
         if (listView_Apps.SelectedItems.Count > 0) {
@@ -916,15 +911,15 @@ namespace NppLauncher {
         try {
           import_data = json_decode(jstr);
           foreach (dynamic app in import_data.NppLauncher) {
-            new_name = GetNewName(gapps, app.Name);
-            dynamic new_app = DeepCopy(app);
+            new_name = GetNewName(gapps, (string)app.Name);
+            dynamic new_app = json_decode(json_encode(app));
             new_app.Name = new_name;
             //
             // Add to UI
             //
-            ListViewItem item = new ListViewItem(new_app.Name);
-            item.SubItems.Add(new_app.Target);
-            item.SubItems.Add(new_app.Args);
+            ListViewItem item = new ListViewItem((string)new_app.Name);
+            item.SubItems.Add((string)new_app.Target);
+            item.SubItems.Add((string)new_app.Args);
             listView_Apps.Items.Add(item);
             //
             // Add to Config

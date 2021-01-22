@@ -8,11 +8,12 @@ using System.Dynamic;
 using Newtonsoft.Json;
 using System.Collections.Specialized;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 
 namespace DNA64.Library {
   public static class Common {
     public static dynamic json_decode(string data) {
-      return JsonConvert.DeserializeObject<ExpandoObject>(data, new ExpandoObjectConverter());
+      return JValue.Parse(data);
     }
 
     public static string json_encode(dynamic data) {
@@ -61,7 +62,16 @@ namespace DNA64.Library {
       foreach (System.IO.FileInfo file in directory.GetFiles ()) file.Delete ();
       foreach (System.IO.DirectoryInfo subDirectory in directory.GetDirectories ()) subDirectory.Delete (true);
     }
-    //System.IO.DirectoryInfo directory = new System.IO.DirectoryInfo (@"C:\...");
-    //directory.Empty();
+
+    public static string MD5(this string str) {
+      using (var cryptoMD5 = System.Security.Cryptography.MD5.Create()) {
+        var bytes = Encoding.UTF8.GetBytes(str);
+        var hash = cryptoMD5.ComputeHash(bytes);
+        var md5 = BitConverter.ToString(hash)
+          .Replace("-", String.Empty)
+          .ToUpper();
+        return md5;
+      }
+    }
   }
 }

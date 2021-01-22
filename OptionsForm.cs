@@ -19,10 +19,10 @@ namespace NppLauncher {
 
     public dynamic InitConfigData(dynamic Data) {
       ConfigData = Data;
-      if (!isset (ConfigData, "RefreshNpp")) {
+      if (!ConfigData.ContainsKey("RefreshNpp")) {
         ConfigData.RefreshNpp = false;
       }
-      if (!isset (ConfigData, "TrashFolders")) {
+      if (!ConfigData.ContainsKey("TrashFolders")) {
         ConfigData.TrashFolders = new List<System.Object> { };
       }
 
