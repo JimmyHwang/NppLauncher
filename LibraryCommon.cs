@@ -20,11 +20,13 @@ namespace DNA64.Library {
       return JsonConvert.SerializeObject (data, Formatting.Indented);
     }
 
-    public static bool isset(dynamic settings, string name) {
+    public static bool isset(dynamic settings, string key) {
       if (settings is ExpandoObject) {
-        return ((IDictionary<string, object>)settings).ContainsKey(name);
+        return ((IDictionary<string, object>)settings).ContainsKey(key);
+      } else if (settings is JObject) {
+        return settings.ContainsKey(key);
       }
-      return settings.GetType().GetProperty(name) != null;
+      return settings.GetType().GetProperty(key) != null;
     }
 
     public static ExpandoObject DeepCopy (ExpandoObject original) {
