@@ -498,11 +498,11 @@ namespace NppLauncher {
     }
 
     private void button_DelGroup_Click (object sender, EventArgs e) {
-      var Data = comboBox_Group.Text;
+      var gname = comboBox_Group.Text;
 
-      var gdict = (IDictionary<string, object>)ConfigData.Group;
-      if (gdict.Keys.Contains (Data)) {
-        gdict.Remove (Data);
+      var glist = ConfigData.Group;
+      if (glist.ContainsKey(gname)) {
+        glist.Remove(gname);
         RefreshComboBoxGroup ();
         RefreshGroupToolStripMenu ();
       }
