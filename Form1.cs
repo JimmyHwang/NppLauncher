@@ -691,10 +691,9 @@ namespace NppLauncher {
     }
 
     void LaunchGroup (string group_name) {
-      object value;
-      var gdict = (IDictionary<string, object>)ConfigData.Group;
-      if (gdict.TryGetValue (group_name, out value)) {
-        List<dynamic> apps = (List<dynamic>)value;
+      var glist = ConfigData.Group;
+      if (glist.ContainsKey(group_name)) {
+        var apps = glist[group_name];
         foreach (dynamic app in apps) {
           LaunchApplication (app);
         }
@@ -707,7 +706,6 @@ namespace NppLauncher {
     }
 
     void AppRun () {
-      object value;
       var gname = comboBox_Group.Text;
       var item = listView_Apps.SelectedItems[0];
       var aname = item.Text;
@@ -726,14 +724,14 @@ namespace NppLauncher {
       AppRun ();
     }
 
-    dynamic GetAppObject (string group_name, string app_name) {
-      object value;
-      var gdict = (IDictionary<string, object>)ConfigData.Group;
-      bool st = gdict.TryGetValue (group_name, out value);
-      List<dynamic> apps = (List<dynamic>)value;
-      foreach (dynamic app in apps) {
-        if (app.Name == app_name) {
-          return app;
+    dynamic GetAppObject (string group_name, string app_name) {      
+      var glist = ConfigData.Group;
+      if (glist.ContainsKey(group_name)) {
+        var apps = glist[group_name];
+        foreach (dynamic app in apps) {
+          if (app.Name == app_name) {
+            return app;
+          }
         }
       }
       return null;
