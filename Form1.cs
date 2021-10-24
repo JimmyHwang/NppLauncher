@@ -653,7 +653,7 @@ namespace NppLauncher {
       //
       ProcessStartInfo start = new ProcessStartInfo ();
       start.Arguments = app.Args;
-      if (File.Exists(app.Target)) {
+      if (File.Exists((string)app.Target)) {
         start.FileName = app.Target;
         if (app.Folder != "") {
           start.WorkingDirectory = app.Folder;
@@ -711,9 +711,9 @@ namespace NppLauncher {
       var gname = comboBox_Group.Text;
       var item = listView_Apps.SelectedItems[0];
       var aname = item.Text;
-      var gdict = (IDictionary<string, object>)ConfigData.Group;
-      if (gdict.TryGetValue (gname, out value)) {
-        List<dynamic> apps = (List<dynamic>)value;
+      var glist = ConfigData.Group;
+      if (glist.ContainsKey(gname)) {
+        var apps = glist[gname];
         foreach (dynamic app in apps) {
           if (app.Name == aname) {
             LaunchApplication (app);
