@@ -471,7 +471,6 @@ namespace NppLauncher {
       FolderList = GetDirectories ("E:\\RemoveFolders", "*.*");
       Console.WriteLine (String.Join (", ", FolderList.ToArray ()));
       Console.WriteLine (FolderList.Count);
-
     }
 
     private void button_AddGroup_Click (object sender, EventArgs e) {
@@ -586,7 +585,6 @@ namespace NppLauncher {
     }
 
     private void button_EditGroup_Click (object sender, EventArgs e) {
-      object value;
       var gname = comboBox_Group.Text;
       var form = new GroupEditorForm ();
       form.Data = gname;
@@ -597,13 +595,14 @@ namespace NppLauncher {
           //
           // Update CnofigData
           //
-          var gdict = (IDictionary<string, object>)ConfigData.Group;
-          if (gdict.TryGetValue (gname, out value)) {
+          var glist = ConfigData.Group;
+          if (glist.ContainsKey(gname)) {
+            var apps = glist[gname];
             if (form.CloneFlag == false) {
-              gdict.Remove(gname);
-              gdict[new_gname] = value;
+              glist.Remove(gname);
+              glist[new_gname] = apps;
             } else {
-              gdict[new_gname] = CloneObject(value);
+              glist[new_gname] = CloneObject(apps);
             }            
           }
           //
