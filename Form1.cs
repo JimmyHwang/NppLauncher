@@ -264,8 +264,13 @@ namespace NppLauncher {
     void RefreshGroupToolStripMenu () {
       groupToolStripMenuItem.DropDownItems.Clear ();
       var glist = ConfigData.Group;
+      List<string> item_list = new List<string>();
       foreach (JProperty prop in glist.Properties()) {
-        groupToolStripMenuItem.DropDownItems.Add (prop.Name, null, groupToolStripMenuItem_Click);
+        item_list.Add(prop.Name);
+      }
+      item_list.Sort();
+      foreach (string item in item_list) {
+        groupToolStripMenuItem.DropDownItems.Add (item, null, groupToolStripMenuItem_Click);
       }
     }
 
