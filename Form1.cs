@@ -657,8 +657,15 @@ namespace NppLauncher {
       //
       ProcessStartInfo start = new ProcessStartInfo ();
       start.Arguments = app.Args;
-      if (File.Exists((string)app.Target)) {
-        start.FileName = app.Target;
+      string target = app.Target;
+      if (target.Length > 1 && target.Substring(0, 1) == "@") {
+        string f = GetApplicationPath(target);
+        if (f != null) {
+          target = f;
+        }
+      }
+      if (File.Exists(target)) {
+        start.FileName = target;        
         if (app.Folder != "") {
           start.WorkingDirectory = app.Folder;
         }
@@ -940,6 +947,27 @@ namespace NppLauncher {
         e.SuppressKeyPress = true;
         AppRemove();
       }
+    }
+
+    string GetApplicationPath(string app) {
+      string result = null;
+      if (app == "@Chrome") {
+        var path = Microsoft.Win32.Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\chrome.exe", null, null) as string;
+        if (path != null) {
+          result = path;
+        }
+      } else if (app == "@Notepad++") {
+        var path = Microsoft.Win32.Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\notepad++.exe", null, null) as string;
+        if (path != null) {
+          result = path;
+        }
+      }
+      return result;
+    }
+
+    private void test1ToolStripMenuItem_Click(object sender, EventArgs e) {
+      string p = GetApplicationPath("chrome");
+      // string p = GetApplicationPath("notepad++");
     }
   } // Form1
 }
