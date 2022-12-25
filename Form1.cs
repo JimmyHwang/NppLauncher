@@ -261,6 +261,31 @@ namespace NppLauncher {
       SetStartupRegistry (checkBox_Startup.Checked);
     }
 
+    string GetItemPrefix(string item) {
+      string result = null;
+      var p = item.IndexOf(" ");
+      if (p == -1) {
+        p = item.IndexOf("_");
+      }
+      if (p != -1) {
+        result = item.Substring(0, p);
+      } else {
+        result = item;
+      }
+      return result;
+    }
+
+    int GetPrefixCount(List<string> item_list, string prefix) {
+      int count = 0;
+      foreach (string item in item_list) {
+        string p = GetItemPrefix(item);
+        if (p == prefix) {
+          count++;
+        }
+      }
+      return count;
+    }
+
     void RefreshGroupToolStripMenu () {
       groupToolStripMenuItem.DropDownItems.Clear ();
       var glist = ConfigData.Group;
@@ -269,8 +294,37 @@ namespace NppLauncher {
         item_list.Add(prop.Name);
       }
       item_list.Sort();
+      //
+      // Auto partition the menu items to groups
+      //
+      List<PrefixClass> prefix_list = new List<PrefixClass>();
       foreach (string item in item_list) {
-        groupToolStripMenuItem.DropDownItems.Add (item, null, groupToolStripMenuItem_Click);
+        var prefix = GetItemPrefix(item);
+        if (prefix != null) {
+          if (prefix_list.Find(p => p.Name == prefix) == null) {
+            var count = GetPrefixCount(item_list, prefix);
+            if (count > 1) {
+              var pobj = new PrefixClass(prefix, count);
+              pobj.MenuItem = new ToolStripMenuItem(prefix);
+              prefix_list.Add(pobj);        
+            }
+          }
+        }
+      }
+      //
+      // Export menu group and menu items to GUI 
+      //
+      foreach (PrefixClass pobj in prefix_list) {
+        groupToolStripMenuItem.DropDownItems.Add(pobj.MenuItem);
+      }
+      foreach (string item in item_list) {
+        var prefix = GetItemPrefix(item);
+        var pobj = prefix_list.Find(p => p.Name == prefix);
+        if (pobj == null) {
+          groupToolStripMenuItem.DropDownItems.Add(item, null, groupToolStripMenuItem_Click);
+        } else {
+          pobj.MenuItem.DropDownItems.Add(item, null, groupToolStripMenuItem_Click);
+        }
       }
     }
 
@@ -942,4 +996,16 @@ namespace NppLauncher {
       }
     }
   } // Form1
+}
+
+public class PrefixClass {
+  public string Name;
+  public int Count;
+  public ToolStripMenuItem MenuItem;
+
+  public PrefixClass(string name, int count) {
+    this.Name = name;
+    this.Count = count;
+    this.MenuItem = null;
+  }
 }
