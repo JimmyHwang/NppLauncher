@@ -39,6 +39,9 @@ namespace NppLauncher {
       if (!isset (ConfigData, "WaitMode")) {
         ConfigData.WaitMode = 0;
       }
+      if (!isset(ConfigData, "Disable")) {
+        ConfigData.Disable = false;
+      }
     }
 
     void Config2UI() {
@@ -50,6 +53,7 @@ namespace NppLauncher {
       textBox_Target.Text = ConfigData.Target;
       textBox_Args.Text = ConfigData.Args;
       textBox_Folder.Text = ConfigData.Folder;
+      checkBox_Disable.Checked = ConfigData.Disable;
     }
 
     void UI2Config() {
@@ -60,6 +64,7 @@ namespace NppLauncher {
       ConfigData.Target = textBox_Target.Text;
       ConfigData.Args = textBox_Args.Text;
       ConfigData.Folder = textBox_Folder.Text;
+      ConfigData.Disable = checkBox_Disable.Checked;
     }
 
     private void button_OK_Click(object sender, EventArgs e) {

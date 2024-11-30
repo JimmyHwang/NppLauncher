@@ -682,6 +682,13 @@ namespace NppLauncher {
     }
 
     void LaunchApplication (dynamic app) {
+      var disable_flag = false;      
+      if (app.ContainsKey("Disable")) {
+        disable_flag = app["Disable"];
+      }
+      if (disable_flag) {
+        return;
+      }
       //
       // Set default data for leak fields of ConfigData
       //

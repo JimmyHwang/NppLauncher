@@ -38,6 +38,7 @@
       this.button_Folder = new System.Windows.Forms.Button();
       this.textBox_PreExec = new System.Windows.Forms.TextBox();
       this.label5 = new System.Windows.Forms.Label();
+      this.checkBox_Disable = new System.Windows.Forms.CheckBox();
       this.SuspendLayout();
       // 
       // label1
@@ -174,11 +175,22 @@
       this.label5.TabIndex = 16;
       this.label5.Text = "Pre-Exec Commands";
       // 
+      // checkBox_Disable
+      // 
+      this.checkBox_Disable.AutoSize = true;
+      this.checkBox_Disable.Location = new System.Drawing.Point(12, 224);
+      this.checkBox_Disable.Name = "checkBox_Disable";
+      this.checkBox_Disable.Size = new System.Drawing.Size(58, 16);
+      this.checkBox_Disable.TabIndex = 17;
+      this.checkBox_Disable.Text = "Disable";
+      this.checkBox_Disable.UseVisualStyleBackColor = true;
+      // 
       // AppEditorForm
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(712, 252);
+      this.Controls.Add(this.checkBox_Disable);
       this.Controls.Add(this.label5);
       this.Controls.Add(this.textBox_PreExec);
       this.Controls.Add(this.button_Folder);
@@ -219,5 +231,6 @@
     private System.Windows.Forms.Button button_Folder;
     private System.Windows.Forms.TextBox textBox_PreExec;
     private System.Windows.Forms.Label label5;
+    private System.Windows.Forms.CheckBox checkBox_Disable;
   }
 }
